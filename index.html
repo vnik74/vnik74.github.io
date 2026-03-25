@@ -19,25 +19,12 @@
       background: #121212;
       font-family: 'Inter', sans-serif;
     }
-    @media (max-width: 768px) {
-      .case-flex {
-        flex-direction: column;
-        text-align: center;
-      }
-      .case-image {
-        flex: 0 0 auto !important;
-        width: 100%;
-        max-width: 300px;
-        margin: 0 auto;
-      }
-    }
   </style>
 </head>
 <body>
 
 <!-- HERO-БЛОК -->
 <div style="background: #1A1A1A; color: #FFFFFF; padding: 60px 20px; text-align: center; position: relative;">
-  <!-- Фоновое изображение -->
   <div style="background: url('images/hero-bg.jpg') center/cover no-repeat; 
               height: 100%; 
               filter: brightness(0.8); 
@@ -45,30 +32,16 @@
               top: 0; left: 0; right: 0; 
               opacity: 0.3; 
               z-index: 0;"></div>
-  
-  <!-- Контент -->
   <div style="position: relative; z-index: 1; max-width: 800px; margin: 0 auto;">
-    <!-- Изображение вверху -->
-    <div style="margin-bottom: 32px;">
-      <img src="images/hero-image.jpg" alt="Николай Вирко — трафик-менеджер" style="max-width: 280px; width: 100%; border-radius: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.3);">
-    </div>
-    
-    <!-- Заголовок -->
     <h1 style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 42px; line-height: 1.2; margin-bottom: 16px;">
       Помогаю бизнесу получать стабильные заказы — не только в маркетплейсах, но и на других сайтах с использованием рекламы Яндекс.Директ.
     </h1>
-    
-    <!-- Подзаголовок -->
     <p style="font-family: 'Inter', sans-serif; font-size: 20px; opacity: 0.85; margin-bottom: 24px;">
       Глубокая настройка, качественные креативы, прозрачная отчетность.
     </p>
-    
-    <!-- Описание формата работы -->
     <p style="font-style: italic; font-size: 18px; opacity: 0.7; margin-bottom: 32px;">
       Работаю удаленно, свободный график. Беру немного проектов — но каждый делаю глубоко и качественно.
     </p>
-    
-    <!-- Кнопки -->
     <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 24px;">
       <a href="#кейсы" style="background: linear-gradient(135deg, #FFB6C1, #FFD700); 
                               color: #1A1A1A; 
@@ -124,23 +97,23 @@
   </div>
 
   <!-- КЕЙС 1: Презентация -->
-  <div style="max-width: 900px; margin: 0 auto 60px; background: #1A1A1A; border-radius: 16px; padding: 32px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); display: flex; flex-wrap: wrap; gap: 32px; align-items: center;">
-    <div style="flex: 0 0 400px; text-align: center;">
+  <div style="max-width: 900px; margin: 0 auto 60px; background: #1A1A1A; border-radius: 16px; padding: 32px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); text-align: center;">
+    <div style="margin-bottom: 24px;">
       <img src="images/investments.jpg" alt="Инвестиции" style="max-width: 100%; border-radius: 12px;">
       <p style="font-size: 14px; opacity: 0.7; margin-top: 8px;">Финальный вид презентации</p>
     </div>
-    <div style="flex: 1; min-width: 300px;">
-      <span style="background: linear-gradient(90deg, #FFB6C1, #FFD700); color: #1A1A1A; font-weight: 600; padding: 4px 12px; border-radius: 20px; font-size: 14px;">
+    <div>
+      <span style="background: linear-gradient(90deg, #FFB6C1, #FFD700); color: #1A1A1A; font-weight: 600; padding: 4px 12px; border-radius: 20px; font-size: 14px; display: inline-block; margin-bottom: 16px;">
         → +43% к конверсии в инвестиции
       </span>
       <h3 style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 26px; margin: 16px 0;">
         🎁 Инвестиционная презентация: подарки для женщин
       </h3>
-      <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6; margin-bottom: 16px;">
+      <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6; margin-bottom: 16px; text-align: left;">
         <strong>🧩 Задача:</strong> Презентация «потерялась» у инвесторов:
         выглядела как Excel — без эмоций, без акцента на выгоде.
       </p>
-      <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6; margin-bottom: 16px;">
+      <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6; margin-bottom: 16px; text-align: left;">
         <strong>🧠 Решение:</strong> Переделал в стиле «роскошного
         минимализма»:<br>
         — тёмный фон + розово-золотые акценты,<br>
@@ -148,7 +121,7 @@
         — визуалы: фотореалистичные коробки в soft-свете, женские руки,
         ленты — <strong>без текста на изображениях</strong>.
       </p>
-      <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6;">
+      <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6; text-align: left;">
         <strong>📈 Результат:</strong> +43% к конверсии в инвестиции за 2
         недели. Получил 3 новых инвестора, стартовав с 49 500 ₽.
       </p>
@@ -156,30 +129,30 @@
   </div>
 
   <!-- КЕЙС 2: Таплинк -->
-  <div style="max-width: 900px; margin: 0 auto 60px; background: #1A1A1A; border-radius: 16px; padding: 32px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); display: flex; flex-wrap: wrap; gap: 32px; align-items: center;">
-    <div style="flex: 0 0 400px; text-align: center;">
+  <div style="max-width: 900px; margin: 0 auto 60px; background: #1A1A1A; border-radius: 16px; padding: 32px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); text-align: center;">
+    <div style="margin-bottom: 24px;">
       <img src="images/taplink.jpg" alt="Таплинк" style="max-width: 100%; border-radius: 12px;">
       <p style="font-size: 14px; opacity: 0.7; margin-top: 8px;">Экран таплинка на iPhone</p>
     </div>
-    <div style="flex: 1; min-width: 300px;">
-      <span style="background: linear-gradient(90deg, #FFB6C1, #FFD700); color: #1A1A1A; font-weight: 600; padding: 4px 12px; border-radius: 20px; font-size: 14px;">
+    <div>
+      <span style="background: linear-gradient(90deg, #FFB6C1, #FFD700); color: #1A1A1A; font-weight: 600; padding: 4px 12px; border-radius: 20px; font-size: 14px; display: inline-block; margin-bottom: 16px;">
         → +22% к заявкам
       </span>
       <h3 style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 26px; margin: 16px 0;">
         🧠 Таплинк для психолога
       </h3>
-      <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6; margin-bottom: 16px;">
+      <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6; margin-bottom: 16px; text-align: left;">
         <strong>🧩 Задача:</strong> 60% потенциальных клиентов уходили с
         таплинка — выглядел как список ссылок, без доверия.
       </p>
-      <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6; margin-bottom: 16px;">
+      <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6; margin-bottom: 16px; text-align: left;">
         <strong>🧠 Решение:</strong> Создал таплинк в стиле «минимализм +
         эмпатия»:<br>
         — фото психолога (естественная улыбка, soft light),<br>
         — иконки вместо текста,<br>
         — кнопка «Записаться» — розово-золотая, с hover-эффектом.
       </p>
-      <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6;">
+      <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6; text-align: left;">
         <strong>📈 Результат:</strong> +22% к заявкам за 2 недели. Среднее
         время на странице — с 12 до 38 секунд.
       </p>
@@ -187,30 +160,30 @@
   </div>
 
   <!-- КЕЙС 3: Оформление ВК -->
-  <div style="max-width: 900px; margin: 0 auto 60px; background: #1A1A1A; border-radius: 16px; padding: 32px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); display: flex; flex-wrap: wrap; gap: 32px; align-items: center;">
-    <div style="flex: 0 0 400px; text-align: center;">
+  <div style="max-width: 900px; margin: 0 auto 60px; background: #1A1A1A; border-radius: 16px; padding: 32px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); text-align: center;">
+    <div style="margin-bottom: 24px;">
       <img src="images/avatar-d.jpg" alt="аватарка девушки" style="max-width: 100%; border-radius: 12px;">
       <p style="font-size: 14px; opacity: 0.7; margin-top: 8px;">Обложка ВК с медальоном</p>
     </div>
-    <div style="flex: 1; min-width: 300px;">
-      <span style="background: linear-gradient(90deg, #FFB6C1, #FFD700); color: #1A1A1A; font-weight: 600; padding: 4px 12px; border-radius: 20px; font-size: 14px;">
+    <div>
+      <span style="background: linear-gradient(90deg, #FFB6C1, #FFD700); color: #1A1A1A; font-weight: 600; padding: 4px 12px; border-radius: 20px; font-size: 14px; display: inline-block; margin-bottom: 16px;">
         → +37% к сохранениям постов
       </span>
       <h3 style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 26px; margin: 16px 0;">
         👑 Оформление ВК: «женственный шик»
       </h3>
-      <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6; margin-bottom: 16px;">
+      <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6; margin-bottom: 16px; text-align: left;">
         <strong>🧩 Задача:</strong> Эксперт не выделялась в ленте —
         стандартное оформление, низкая узнаваемость.
       </p>
-      <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6; margin-bottom: 16px;">
+      <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6; margin-bottom: 16px; text-align: left;">
         <strong>🧠 Решение:</strong> Разработал бренд-стиль «женственный
         шик»:<br>
         — медальон с профилем в золотом свете,<br>
         — радиальные лучи → эффект «сияния»,<br>
         — шрифты: Montserrat Bold + кистевые акценты.
       </p>
-      <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6;">
+      <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6; text-align: left;">
         <strong>📈 Результат:</strong> +37% к сохранениям постов, +15% к
         росту подписчиков за месяц.
       </p>
@@ -218,40 +191,86 @@
   </div>
 
   <!-- КЕЙС 4: Контекстная реклама + маркетплейс -->
-  <div style="max-width: 900px; margin: 0 auto 60px; background: #1A1A1A; border-radius: 16px; padding: 32px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); display: flex; flex-wrap: wrap; gap: 32px; align-items: center;">
-    <div style="flex: 0 0 400px; text-align: center;">
+  <div style="max-width: 900px; margin: 0 auto 60px; background: #1A1A1A; border-radius: 16px; padding: 32px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); text-align: center;">
+    <div style="margin-bottom: 24px;">
       <img src="images/yandex-direct.jpg" alt="Яндекс.Директ + маркетплейс" style="max-width: 100%; border-radius: 12px;">
       <p style="font-size: 14px; opacity: 0.7; margin-top: 8px;">Настройка рекламы + продвижение на маркетплейсе</p>
     </div>
-    <div style="flex: 1; min-width: 300px;">
-      <span style="background: linear-gradient(90deg, #FFB6C1, #FFD700); color: #1A1A1A; font-weight: 600; padding: 4px 12px; border-radius: 20px; font-size: 14px;">
+    <div>
+      <span style="background: linear-gradient(90deg, #FFB6C1, #FFD700); color: #1A1A1A; font-weight: 600; padding: 4px 12px; border-radius: 20px; font-size: 14px; display: inline-block; margin-bottom: 16px;">
         → +32% к заявкам, CPL −32%, рост продаж на маркетплейсе
       </span>
       <h3 style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 26px; margin: 16px 0;">
         📈 Продвижение товара: Яндекс.Директ + маркетплейс
       </h3>
-      <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6; margin-bottom: 16px;">
+      <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6; margin-bottom: 16px; text-align: left;">
         <strong>🧩 Задача:</strong> Продажи на маркетплейсе были нестабильны, внешнего трафика не было. 
         Требовалось увеличить количество заказов и снизить стоимость привлечения.
       </p>
-      <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6; margin-bottom: 16px;">
+      <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6; margin-bottom: 16px; text-align: left;">
         <strong>🧠 Решение:</strong> 
         — Настроил рекламную кампанию в Яндекс.Директ на карточки товаров<br>
         — Создал в Figma баннеры для РСЯ и поиска<br>
         — Оптимизировал карточки товаров на маркетплейсе (заголовки, фото, описание)<br>
         — Настроил аналитику, чтобы отслеживать заказы с рекламы
       </p>
-      <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6;">
+      <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6; text-align: left;">
         <strong>📈 Результат за 5 недель:</strong><br>
         — CPL снизился с 1800 ₽ до 1220 ₽ (−32%)<br>
         — Количество заказов выросло на +50%<br>
         — CTR объявлений: с 1,8% до 2,7%
       </p>
-      <p style="font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.5; margin-top: 16px; opacity: 0.7; font-style: italic;">
+      <p style="font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.5; margin-top: 16px; opacity: 0.7; font-style: italic; text-align: left;">
         *Комплексный подход: внешняя реклама + внутренняя оптимизация маркетплейса. Без «волшебных кнопок» — только системная работа.*
       </p>
     </div>
   </div>
+
+  <!-- CTA после кейсов -->
+  <div style="text-align: center; margin-top: 40px;">
+    <p style="font-size: 18px; opacity: 0.85; margin-bottom: 20px;">Хотите
+      такой же результат — под ваш товар или услугу?</p>
+    <a href="https://vk.com/nikvirko" style="background: linear-gradient(135deg, #FFB6C1, #FFD700); 
+          color: #1A1A1A; 
+          font-weight: 600; 
+          padding: 14px 36px; 
+          border-radius: 8px; 
+          text-decoration: none; 
+          display: inline-block;">
+      Написать в VK → получить 3 примера под вашу задачу
+    </a>
+  </div>
+</div>
+
+<!-- ДЛЯ КОГО ЭТО (сокращенно, остальное по аналогии) -->
+<div id="для-кого" style="background: #121212; color: #FFFFFF; padding: 60px 20px;">
+  <div style="max-width: 1000px; margin: 0 auto; text-align: center; margin-bottom: 40px;">
+    <h2 style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 36px;">
+      Вы получите максимальную отдачу, если...
+    </h2>
+    <p style="font-family: 'Inter', sans-serif; font-size: 18px; opacity: 0.8; margin-top: 12px;">
+      Это не для всех. Но если вы здесь — значит, вы уже чувствуете: «Мне
+      нужно другое».
+    </p>
+  </div>
+  <div style="max-width: 900px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 24px; justify-content: center;">
+    <div style="flex: 1; min-width: 280px; background: #1A1A1A; border-radius: 16px; padding: 32px; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.2);">
+      <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #FFB6C1, #FFD700); border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; color: #121212; font-weight: bold; font-size: 24px;">1</div>
+      <h3 style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 22px; margin-bottom: 16px;">🔹 Вы продаете на маркетплейсах</h3>
+      <p style="font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.6;">Нужен стабильный поток заказов, а не просто «выгрузить товар». → Я настрою внешнюю рекламу + оптимизирую карточки, чтобы продажи росли.</p>
+    </div>
+    <div style="flex: 1; min-width: 280px; background: #1A1A1A; border-radius: 16px; padding: 32px; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.2);">
+      <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #FFB6C1, #FFD700); border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; color: #121212; font-weight: bold; font-size: 24px;">2</div>
+      <h3 style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 22px; margin-bottom: 16px;">🔹 У вас есть сайт / бизнес</h3>
+      <p style="font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.6;">Реклама в Яндексе дает дорогие заявки или нестабильный результат. → Я настрою контекстную рекламу, которая приведет тех, кто уже готов купить.</p>
+    </div>
+    <div style="flex: 1; min-width: 280px; background: #1A1A1A; border-radius: 16px; padding: 32px; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.2);">
+      <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #FFB6C1, #FFD700); border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; color: #121212; font-weight: bold; font-size: 24px;">3</div>
+      <h3 style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 22px; margin-bottom: 16px;">🔹 У вас есть товар, но нет системы</h3>
+      <p style="font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.6;">Пробовали запускать рекламу сами или с подрядчиками — без результата. → Я выстрою систему: аналитика → креативы → настройка → масштабирование.</p>
+    </div>
+  </div>
+</div>
 
   <!-- CTA после кейсов -->
   <div style="text-align: center; margin-top: 40px;">
