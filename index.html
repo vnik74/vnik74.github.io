@@ -95,48 +95,333 @@
       Не просто «запустить» — а так, чтобы росли продажи, снижалась стоимость привлечения и был понятный результат.
     </p>
   </div>
- <!-- КЕЙС 0: Дизайн карточек товара -->
-  <div style="max-width: 900px; margin: 0 auto 60px; background: #1A1A1A; border-radius: 16px; padding: 32px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); text-align: center;">
-    <div style="margin-bottom: 24px;">
-      <img src="images/карточка для Wildberries.jpg" alt="Карточка товара для Wildberry" style="max-width: 100%; border-radius: 12px;">
-      <p style="font-size: 14px; opacity: 0.7; margin-top: 8px;">Финальный вид карточек</p>
+    <title>Кейсы: Оформление карточек для маркетплейсов</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0A0A0A;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            padding: 40px 20px;
+            color: #FFFFFF;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .case-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+            margin-top: 40px;
+        }
+
+        .case-card {
+            background: #1A1A1A;
+            border-radius: 24px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+
+        .case-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px rgba(0,0,0,0.4);
+        }
+
+        .case-content {
+            padding: 32px;
+        }
+
+        .images-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin-bottom: 28px;
+        }
+
+        .image-block {
+            width: 100%;
+        }
+
+        .image-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #FFD700;
+            margin-bottom: 10px;
+            letter-spacing: 0.3px;
+        }
+
+        .image-placeholder {
+            background: linear-gradient(135deg, #2A2A2A 0%, #1A1A1A 100%);
+            border-radius: 16px;
+            width: 100%;
+            min-height: 260px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+        }
+
+        .badge {
+            background: linear-gradient(90deg, #FFB6C1, #FFD700);
+            color: #1A1A1A;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 14px;
+            display: inline-block;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        h3 {
+            font-family: 'Montserrat', 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 26px;
+            margin: 16px 0 20px 0;
+            letter-spacing: -0.3px;
+        }
+
+        .case-text {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #E0E0E0;
+        }
+
+        .case-text strong {
+            color: #FFD700;
+            font-weight: 600;
+        }
+
+        .result-stats {
+            background: rgba(255, 215, 0, 0.08);
+            border-left: 4px solid #FFD700;
+            padding: 18px 22px;
+            border-radius: 12px;
+            margin: 24px 0;
+            font-weight: 500;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            border: 1.5px solid #FFD700;
+            color: #FFD700;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: rgba(255, 215, 0, 0.15);
+            transform: scale(1.02);
+        }
+
+        @media (max-width: 768px) {
+            .case-content {
+                padding: 24px;
+            }
+            h3 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    
+    <!-- Заголовок раздела -->
+    <div style="text-align: center; margin-bottom: 48px;">
+        <span style="background: rgba(255,215,0,0.15); color: #FFD700; padding: 6px 16px; border-radius: 40px; font-size: 13px; font-weight: 600;">Портфолио</span>
+        <h2 style="font-size: 36px; margin-top: 16px; font-weight: 700;">Карточки для маркетплейсов, <br>которые продают</h2>
+        <p style="font-size: 17px; opacity: 0.8; max-width: 680px; margin: 16px auto 0;">Не просто «запустить» — а так, чтобы росли продажи, снижалась стоимость привлечения и был понятный результат</p>
     </div>
-    <div style="margin-bottom: 24px;">
-      <img src="images/-продающая карточка-.jpg" alt="Продающая карточка" style="max-width: 100%; border-radius: 12px;">
-      <p style="font-size: 14px; opacity: 0.7; margin-top: 8px;">Финальный вид продающей карточки</p>
+
+    <div class="case-grid">
+        
+        <!-- КЕЙС 1: Украшения для женщин -->
+        <div class="case-card">
+            <div class="case-content">
+                <span class="badge">💎 КЕЙС 1: УКРАШЕНИЯ ДЛЯ ЖЕНЩИН → +32% CTR / +18% конверсии</span>
+                
+                <div class="images-vertical">
+                    <div class="image-block">
+                        <div class="image-label">Обложка</div>
+                        <div class="image-placeholder">
+                            <!-- Сюда вставите обложку (слайдер из нескольких кадров) -->
+                          <img src="https://vnik74.github.io/images
+/cover-earrings.jpg" 
+         alt="Серьги с натуральным жемчугом" 
+         style="width: 100%; height: 100%; object-fit: cover; display: block;">
+
+                        </div>
+                    </div>
+                    <div class="image-block">
+                        <div class="image-label">Характеристики продукта</div>
+                        <div class="image-placeholder">
+                            <!-- Сюда вставите воронку с характеристиками и сущностью товара -->
+                          1.	<img src="https://vnik74.github.io/images
+/карточка для Wildberries.jpg" 
+         alt="характеристики,описание-серьги" 
+         style="width: 100%; height: 100%; object-fit: cover; display: block;">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-text">
+                    <strong>🧩 Задача:</strong> Карточка не привлекала внимание в выдаче и не доводила до покупки: слабые обложки, отсутствие логики показа товара, мало деталей. Клиент терял бюджет на рекламе.
+                </div>
+                <div class="case-text">
+                    <strong>🧠 Решение:</strong><br>
+                    — 4 обложки с разными сценариями (предметка, на ухе, портрет, лайфстайл).<br>
+                    — 6 экранов внутри карточки: эмоция → детали → преимущества.<br>
+                    — Крупные планы изделия + съёмка на модели для масштаба.<br>
+                    — Инфографика: материал, вес, гипоаллергенно.
+                </div>
+                <div class="result-stats">
+                    <strong>📈 Результат:</strong><br>
+                    • CTR: +32% &nbsp;&nbsp; • Конверсия: +18% &nbsp;&nbsp; • Глубина просмотра: +27%<br>
+                    • Снижение CPA: −23% &nbsp;&nbsp; • Отказы: −21%
+                </div>
+                <a href="mailto:vnik50587@gmail.com?subject=Кейс%3A%20Украшения%20для%20женщин" class="cta-button">
+                    ✍️ Пишите →
+                </a>
+            </div>
+        </div>
+
+        <!-- КЕЙС 2: Товары для дома -->
+        <div class="case-card">
+            <div class="case-content">
+                <span class="badge">🏠 КЕЙС 2: ТОВАРЫ ДЛЯ ДОМА → +28% выручки / −19% CPA</span>
+                
+                <div class="images-vertical">
+                    <div class="image-block">
+                        <div class="image-label">Обложка</div>
+                        <div class="image-placeholder">
+                            <!-- Сюда вставите обложку (слайдер из нескольких кадров) -->
+                          3.	<img src="https://vnik74.github.io/images
+/cover-set_of_ towels.png" 
+         alt="Набор махровых полотенец" 
+         style="width: 100%; height: 100%; object-fit: cover; display: block;">
+
+                        </div>
+                    </div>
+                    <div class="image-block">
+                        <div class="image-label">Характеристики продукта</div>
+                        <div class="image-placeholder">
+                            <!-- Сюда вставите воронку с характеристиками и сущностью товара --> 4.	<img src="https://vnik74.github.io/images
+/Description_of _he towel_set.png" 
+         alt="Описание набора махровых полотенец" 
+         style="width: 100%; height: 100%; object-fit: cover; display: block;">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-text">
+                    <strong>🧩 Задача:</strong> Карточки товаров для дома терялись среди конкурентов — покупатели не видели качество и масштаб.
+                </div>
+                <div class="case-text">
+                    <strong>🧠 Решение:</strong><br>
+                    — Единый стиль под матрицу (уют, функциональность).<br>
+                    — Визуальная воронка: общий вид → детали → товар в интерьере → преимущества.<br>
+                    — Инфографика «для каких помещений», «уровень сложности ухода».
+                </div>
+                <div class="result-stats">
+                    <strong>📈 Результат:</strong><br>
+                    • Выручка: +28% &nbsp;&nbsp; • CTR: +35% &nbsp;&nbsp; • CPC: −19%<br>
+                    • Конверсия в корзину: +22% &nbsp;&nbsp; • Повторные продажи: +15%
+                </div>
+                <a href="mailto:vnik50587@gmail.com?subject=Кейс%3A%20Товары%20для%20дома" class="cta-button">
+                    ✍️ Пишите →
+                </a>
+            </div>
+        </div>
+
+        <!-- КЕЙС 3: Косметика -->
+        <div class="case-card">
+            <div class="case-content">
+                <span class="badge">💄 КЕЙС 3: КОСМЕТИКА → +41% конверсии / −25% отказов</span>
+                
+                <div class="images-vertical">
+                    <div class="image-block">
+                        <div class="image-label">Обложка</div>
+                        <div class="image-placeholder">
+                            <!-- Сюда вставите обложку (слайдер из нескольких кадров) -->
+                          5.	<img src="https://vnik74.github.io/images
+/Обложка-крем_сыворотка.png" 
+         alt="Обложка-крем сыворотка" 
+         style="width: 100%; height: 100%; object-fit: cover; display: block;">
+
+                        </div>
+                    </div>
+                    <div class="image-block">
+                        <div class="image-label">Характеристики продукта</div>
+                        <div class="image-placeholder">
+                            <!-- Сюда вставите воронку с характеристиками и сущностью товара --> 6.	<img src="https://vnik74.github.io/images
+/описаниние-крем сыврортка.png" 
+         alt="Описание-крем сыворотка" 
+         style="width: 100%; height: 100%; object-fit: cover; display: block;">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-text">
+                    <strong>🧩 Задача:</strong> Карточки не вызывали доверия, не показывали текстуру и результат применения.
+                </div>
+                <div class="case-text">
+                    <strong>🧠 Решение:</strong><br>
+                    — Акцент на «до/после» (макро кожи с текстурой).<br>
+                    — Блоки: состав → нанесение → эффект → безопасность.<br>
+                    — Крупный план аппликатора/текстуры.<br>
+                    — Визуализация компонентов через иконки.
+                </div>
+                <div class="result-stats">
+                    <strong>📈 Результат:</strong><br>
+                    • Конверсия: +41% &nbsp;&nbsp; • Отказы: −25% &nbsp;&nbsp; • Средний чек: +12%<br>
+                    • Время просмотра: +35 сек &nbsp;&nbsp; • CAC: −28%
+                </div>
+                <a href="mailto:vnik50587@gmail.com?subject=Кейс%3A%20Косметика" class="cta-button">
+                    ✍️ Пишите →
+                </a>
+            </div>
+        </div>
     </div>
-    <div>
-    <span style="background: linear-gradient(90deg, #FFB6C1, #FFD700); color: #1A1A1A; font-weight: 600; padding: 4px 12px; border-radius: 20px; font-size: 14px; display: inline-block; margin-bottom: 16px;">
-      → +32% к CTR / +18% к конверсии
-    </span>
 
-    <h3 style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 26px; margin: 16px 0;">
-      💎 Карточка товара: серьги
-    </h3>
-
-    <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6; margin-bottom: 16px; text-align: left;">
-      <strong>🧩 Задача:</strong> Карточка не привлекала внимание в выдаче и не доводила до покупки:
-      слабые обложки, отсутствие логики показа товара, мало деталей.
+   <!-- Финальный блок -->
+<div style="background: linear-gradient(135deg, #FFB6C1 0%, #FFD700 100%); color: #1A1A1A; border-radius: 28px; padding: 36px; margin-top: 60px; text-align: center;">
+    <h3 style="font-size: 28px; margin-bottom: 16px; font-weight: 800;">Ты тоже хочешь такие результаты?</h3>
+    <p style="font-size: 18px; margin-bottom: 12px; max-width: 600px; margin-left: auto; margin-right: auto; font-weight: 500;">
+        Разберу твои карточки, найду слабые места<br>
+        и предложу решение, которое реально увеличит продажи.
     </p>
-
-    <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6; margin-bottom: 16px; text-align: left;">
-      <strong>🧠 Решение:</strong> Пересобрал визуал как продающую воронку:<br>
-      — 4 обложки с разными сценариями (предметка, на ухе, портрет, лайфстайл),<br>
-      — 6 экранов внутри карточки: от эмоции → к деталям → к преимуществам,<br>
-      — крупные планы изделия + съёмка на модели для масштаба,<br>
-      — инфографика для быстрого считывания ценности.
+    <p style="font-size: 15px; margin-bottom: 32px; opacity: 0.8;">
+        📌 Работаю с Wildberries и Ozon. Вдумчиво, без спешки, с результатом.
     </p>
-
-    <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6; text-align: left;">
-      <strong>📈 Результат:</strong> A/B-тест показал рост ключевых метрик:<br>
-      +32% к CTR в выдаче,<br>
-      +27% к глубине просмотра,<br>
-      +18% к конверсии в покупку,<br>
-      −21% отказов.
-    </p>
-
-  </div>
+    <a href="mailto:vnik50587@gmail.com?subject=Запрос%20на%20создание%20карточек" style="background: #1A1A1A; color: white; padding: 14px 32px; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-block; font-size: 16px;">
+        Напиши — обсудим →
+    </a>
 </div>
+</div>
+</body>
+</html>
 
   <!-- КЕЙС 1: Презентация -->
   <div style="max-width: 900px; margin: 0 auto 60px; background: #1A1A1A; border-radius: 16px; padding: 32px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); text-align: center;">
