@@ -147,10 +147,28 @@
 </head>
 <body>
 
-<!-- HERO-БЛОК -->
+<!-- HERO-БЛОК с раскрывающимся меню -->
 <section id="hero">
   <div style="background: #1A1A1A; color: #FFFFFF; padding: 60px 20px; text-align: center; position: relative;">
+    <!-- Фоновое изображение -->
     <div style="background: url('images/hero-bg.jpg') center/cover no-repeat; height: 100%; filter: brightness(0.8); position: absolute; top: 0; left: 0; right: 0; opacity: 0.3; z-index: 0;"></div>
+    
+    <!-- Кнопка-бургер (раскрывающееся меню) -->
+    <div style="position: absolute; top: 24px; right: 24px; z-index: 10;">
+      <button id="menuToggle" style="background: rgba(255, 215, 0, 0.15); border: 1px solid rgba(255, 215, 0, 0.4); border-radius: 50%; width: 48px; height: 48px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; backdrop-filter: blur(4px);">
+        <span style="font-size: 28px; color: #FFD700;">☰</span>
+      </button>
+      
+      <!-- Выпадающее меню (скрыто по умолчанию) -->
+      <div id="dropdownMenu" style="position: absolute; top: 56px; right: 0; background: #1A1A1A; border-radius: 16px; padding: 12px 0; min-width: 200px; box-shadow: 0 8px 24px rgba(0,0,0,0.4); border: 1px solid #333; display: none; flex-direction: column; z-index: 20;">
+        <a href="#about" style="padding: 12px 24px; color: #FFD700; text-decoration: none; transition: background 0.2s; font-weight: 500;">👤 Обо мне</a>
+        <a href="#cases" style="padding: 12px 24px; color: #FFD700; text-decoration: none; transition: background 0.2s; font-weight: 500;">📁 Кейсы</a>
+        <a href="#services" style="padding: 12px 24px; color: #FFD700; text-decoration: none; transition: background 0.2s; font-weight: 500;">🎯 Услуги</a>
+        <a href="#for-whom" style="padding: 12px 24px; color: #FFD700; text-decoration: none; transition: background 0.2s; font-weight: 500;">👥 Для кого</a>
+        <a href="#tools" style="padding: 12px 24px; color: #FFD700; text-decoration: none; transition: background 0.2s; font-weight: 500;">🛠️ Инструменты</a>
+      </div>
+    </div>
+
     <div style="position: relative; z-index: 1; max-width: 800px; margin: 0 auto;">
       <h1 style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 42px; line-height: 1.2; margin-bottom: 16px;">
         Помогаю бизнесу получать стабильные заказы — не только в маркетплейсах, но и на других сайтах с использованием рекламы Яндекс.Директ.
@@ -173,24 +191,35 @@
   </div>
 </section>
 
-<!-- НАВИГАЦИЯ ПО НИШАМ И УСЛУГАМ -->
-<div style="background: #121212; border-bottom: 1px solid #333;">
-  <div class="container" style="padding: 16px 20px; display: flex; flex-wrap: wrap; justify-content: center; gap: 24px;">
-    <div style="display: flex; flex-wrap: wrap; gap: 16px;">
-      <strong style="color: #FFD700;">📦 Ниши:</strong>
-      <a href="#case-jewelry" style="color: #FFF; text-decoration: none;">💎 Украшения</a>
-      <a href="#case-home" style="color: #FFF; text-decoration: none;">🏠 Товары для дома</a>
-      <a href="#case-cosmetics" style="color: #FFF; text-decoration: none;">💄 Косметика</a>
-    </div>
-    <div style="display: flex; flex-wrap: wrap; gap: 16px;">
-      <strong style="color: #FFD700;">🎯 Услуги:</strong>
-      <a href="#service-presentation" style="color: #FFF; text-decoration: none;">📊 Презентации</a>
-      <a href="#service-taplink" style="color: #FFF; text-decoration: none;">🧠 Таплинки</a>
-      <a href="#service-smm" style="color: #FFF; text-decoration: none;">👑 Оформление соцсетей</a>
-      <a href="#service-ads" style="color: #FFF; text-decoration: none;">📢 Контекстная реклама</a>
-    </div>
-  </div>
-</div>
+<script>
+  // Логика для раскрывающегося меню
+  const menuToggle = document.getElementById('menuToggle');
+  const dropdownMenu = document.getElementById('dropdownMenu');
+
+  menuToggle.addEventListener('click', function(event) {
+    event.stopPropagation();
+    if (dropdownMenu.style.display === 'flex') {
+      dropdownMenu.style.display = 'none';
+    } else {
+      dropdownMenu.style.display = 'flex';
+    }
+  });
+
+  // Закрываем меню при клике вне его
+  document.addEventListener('click', function(event) {
+    if (!menuToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
+      dropdownMenu.style.display = 'none';
+    }
+  });
+
+  // Закрываем меню после клика по ссылке (плавная прокрутка и закрытие)
+  const menuLinks = dropdownMenu.querySelectorAll('a');
+  menuLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      dropdownMenu.style.display = 'none';
+    });
+  });
+</script>
 
 <!-- ОБО МНЕ -->
 <section id="about">
