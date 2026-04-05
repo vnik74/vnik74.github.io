@@ -25,7 +25,6 @@
       max-width: 1000px;
       margin: 0 auto;
     }
-    /* Стили для карточек кейсов — единые размеры и отступы */
     .case-grid {
       display: flex;
       flex-direction: column;
@@ -39,6 +38,7 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       box-shadow: 0 8px 24px rgba(0,0,0,0.3);
       width: 100%;
+      scroll-margin-top: 80px;
     }
     .case-card:hover {
       transform: translateY(-4px);
@@ -147,8 +147,8 @@
 </head>
 <body>
 
-<!-- HERO-БЛОК с якорной ссылкой -->
-<section id="hero" aria-label="Главный блок">
+<!-- HERO-БЛОК -->
+<section id="hero">
   <div style="background: #1A1A1A; color: #FFFFFF; padding: 60px 20px; text-align: center; position: relative;">
     <div style="background: url('images/hero-bg.jpg') center/cover no-repeat; height: 100%; filter: brightness(0.8); position: absolute; top: 0; left: 0; right: 0; opacity: 0.3; z-index: 0;"></div>
     <div style="position: relative; z-index: 1; max-width: 800px; margin: 0 auto;">
@@ -173,8 +173,27 @@
   </div>
 </section>
 
-<!-- ОБО МНЕ с якорной ссылкой -->
-<section id="about" aria-label="Обо мне">
+<!-- НАВИГАЦИЯ ПО НИШАМ И УСЛУГАМ -->
+<div style="background: #121212; border-bottom: 1px solid #333;">
+  <div class="container" style="padding: 16px 20px; display: flex; flex-wrap: wrap; justify-content: center; gap: 24px;">
+    <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+      <strong style="color: #FFD700;">📦 Ниши:</strong>
+      <a href="#case-jewelry" style="color: #FFF; text-decoration: none;">💎 Украшения</a>
+      <a href="#case-home" style="color: #FFF; text-decoration: none;">🏠 Товары для дома</a>
+      <a href="#case-cosmetics" style="color: #FFF; text-decoration: none;">💄 Косметика</a>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+      <strong style="color: #FFD700;">🎯 Услуги:</strong>
+      <a href="#service-presentation" style="color: #FFF; text-decoration: none;">📊 Презентации</a>
+      <a href="#service-taplink" style="color: #FFF; text-decoration: none;">🧠 Таплинки</a>
+      <a href="#service-smm" style="color: #FFF; text-decoration: none;">👑 Оформление соцсетей</a>
+      <a href="#service-ads" style="color: #FFF; text-decoration: none;">📢 Контекстная реклама</a>
+    </div>
+  </div>
+</div>
+
+<!-- ОБО МНЕ -->
+<section id="about">
   <div style="background: #121212; color: #FFFFFF; padding: 60px 20px;">
     <div style="max-width: 900px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; align-items: center;">
       <div style="flex: 1; min-width: 300px;">
@@ -199,8 +218,8 @@
   </div>
 </section>
 
-<!-- СЕКЦИЯ КЕЙСОВ с якорной ссылкой -->
-<section id="cases" aria-label="Кейсы">
+<!-- СЕКЦИЯ КЕЙСОВ -->
+<section id="cases">
   <div style="background: #121212; color: #FFFFFF; padding: 60px 20px;">
     <div class="container">
       <div style="text-align: center; margin-bottom: 48px;">
@@ -210,10 +229,10 @@
       </div>
 
       <div class="case-grid">
-        <!-- КЕЙС 1: Украшения для женщин -->
-        <div class="case-card" id="case-jewelry" aria-label="Кейс: Украшения для женщин">
+        <!-- НИША: УКРАШЕНИЯ -->
+        <div class="case-card" id="case-jewelry">
           <div class="case-content">
-            <span class="badge">💎 КЕЙС 1: УКРАШЕНИЯ ДЛЯ ЖЕНЩИН → +32% CTR / +18% конверсии</span>
+            <span class="badge">💎 НИША: УКРАШЕНИЯ → +32% CTR / +18% конверсии</span>
             <div class="images-vertical">
               <div class="image-block">
                 <div class="image-label">Обложка</div>
@@ -249,10 +268,10 @@
           </div>
         </div>
 
-        <!-- КЕЙС 2: Товары для дома -->
-        <div class="case-card" id="case-home" aria-label="Кейс: Товары для дома">
+        <!-- НИША: ТОВАРЫ ДЛЯ ДОМА -->
+        <div class="case-card" id="case-home">
           <div class="case-content">
-            <span class="badge">🏠 КЕЙС 2: ТОВАРЫ ДЛЯ ДОМА → +28% выручки / −19% CPA</span>
+            <span class="badge">🏠 НИША: ТОВАРЫ ДЛЯ ДОМА → +28% выручки / −19% CPA</span>
             <div class="images-vertical">
               <div class="image-block">
                 <div class="image-label">Обложка</div>
@@ -287,10 +306,10 @@
           </div>
         </div>
 
-        <!-- КЕЙС 3: Косметика -->
-        <div class="case-card" id="case-cosmetics" aria-label="Кейс: Косметика">
+        <!-- НИША: КОСМЕТИКА -->
+        <div class="case-card" id="case-cosmetics">
           <div class="case-content">
-            <span class="badge">💄 КЕЙС 3: КОСМЕТИКА → +41% конверсии / −25% отказов</span>
+            <span class="badge">💄 НИША: КОСМЕТИКА → +41% конверсии / −25% отказов</span>
             <div class="images-vertical">
               <div class="image-block">
                 <div class="image-label">Обложка</div>
@@ -345,123 +364,104 @@
   </div>
 </section>
 
-<!-- ДОПОЛНИТЕЛЬНЫЕ КЕЙСЫ: Презентация, Таплинк, ВК, Контекстная реклама -->
-<section id="more-cases" aria-label="Дополнительные проекты">
+<!-- УСЛУГИ / ФОРМАТЫ (дополнительные кейсы) -->
+<section id="services">
   <div style="background: #121212; color: #FFFFFF; padding: 60px 20px;">
     <div class="container">
-      
-      <!-- КЕЙС 1: Презентация -->
-      <div style="background: #1A1A1A; border-radius: 16px; padding: 32px; margin-bottom: 40px; text-align: center;">
+      <div style="text-align: center; margin-bottom: 48px;">
+        <span style="background: rgba(255,215,0,0.15); color: #FFD700; padding: 6px 16px; border-radius: 40px; font-size: 13px; font-weight: 600;">Услуги и форматы</span>
+        <h2 style="font-size: 36px; margin-top: 16px; font-weight: 700;">Что я ещё умею</h2>
+        <p style="font-size: 17px; opacity: 0.8; max-width: 680px; margin: 16px auto 0;">Презентации, таплинки, оформление соцсетей, настройка рекламы</p>
+      </div>
+
+      <!-- УСЛУГА: ПРЕЗЕНТАЦИЯ -->
+      <div id="service-presentation" style="background: #1A1A1A; border-radius: 16px; padding: 32px; margin-bottom: 40px; text-align: center; scroll-margin-top: 80px;">
         <div style="margin-bottom: 24px;">
           <img src="images/investments.jpg" alt="Инвестиции" style="max-width: 100%; border-radius: 12px;">
           <p style="font-size: 14px; opacity: 0.7; margin-top: 8px;">Финальный вид презентации</p>
         </div>
-        <span style="background: linear-gradient(90deg, #FFB6C1, #FFD700); color: #1A1A1A; font-weight: 600; padding: 4px 12px; border-radius: 20px; font-size: 14px; display: inline-block; margin-bottom: 16px;">
-          → +43% к конверсии в инвестиции
-        </span>
-        <h3 style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 26px; margin: 16px 0;">🎁 Инвестиционная презентация: подарки для женщин</h3>
+        <span class="badge">📊 УСЛУГА: ИНВЕСТИЦИОННАЯ ПРЕЗЕНТАЦИЯ → +43% к конверсии</span>
+        <h3 style="margin: 16px 0;">🎁 Инвестиционная презентация: подарки для женщин</h3>
         <div class="case-text" style="text-align: left;">
           <strong>🧩 Задача:</strong> Презентация «потерялась» у инвесторов: выглядела как Excel — без эмоций, без акцента на выгоде.
         </div>
         <div class="case-text" style="text-align: left;">
-          <strong>🧠 Решение:</strong> Переделал в стиле «роскошного минимализма»:<br>
-          — тёмный фон + розово-золотые акценты,<br>
-          — фокус на цифре: <em>«65 ₽ чистой прибыли с коробки»</em>,<br>
-          — визуалы: фотореалистичные коробки в soft-свете, женские руки, ленты — <strong>без текста на изображениях</strong>.
+          <strong>🧠 Решение:</strong> Переделал в стиле «роскошного минимализма» с розово-золотыми акцентами, фокусом на цифрах и фотореалистичными визуалами.
         </div>
         <div class="result-stats" style="text-align: left;">
-          <strong>📈 Результат:</strong> +43% к конверсии в инвестиции за 2 недели. Получил 3 новых инвестора, стартовав с 49 500 ₽.
+          <strong>📈 Результат:</strong> +43% к конверсии в инвестиции за 2 недели. Получил 3 новых инвестора.
         </div>
         <a href="mailto:vnik50587@gmail.com?subject=Кейс%3A%20Инвестиционная%20презентация" class="cta-button">✍️ Пишите →</a>
       </div>
 
-      <!-- КЕЙС 2: Таплинк -->
-      <div style="background: #1A1A1A; border-radius: 16px; padding: 32px; margin-bottom: 40px; text-align: center;">
+      <!-- УСЛУГА: ТАПЛИНК -->
+      <div id="service-taplink" style="background: #1A1A1A; border-radius: 16px; padding: 32px; margin-bottom: 40px; text-align: center; scroll-margin-top: 80px;">
         <div style="margin-bottom: 24px;">
           <img src="images/taplink.jpg" alt="Таплинк" style="max-width: 100%; border-radius: 12px;">
           <p style="font-size: 14px; opacity: 0.7; margin-top: 8px;">Экран таплинка на iPhone</p>
         </div>
-        <span style="background: linear-gradient(90deg, #FFB6C1, #FFD700); color: #1A1A1A; font-weight: 600; padding: 4px 12px; border-radius: 20px; font-size: 14px; display: inline-block; margin-bottom: 16px;">
-          → +22% к заявкам
-        </span>
-        <h3 style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 26px; margin: 16px 0;">🧠 Таплинк для психолога</h3>
+        <span class="badge">🧠 УСЛУГА: ТАПЛИНК / ЛЕНДИНГ → +22% к заявкам</span>
+        <h3 style="margin: 16px 0;">🧠 Таплинк для психолога</h3>
         <div class="case-text" style="text-align: left;">
-          <strong>🧩 Задача:</strong> 60% потенциальных клиентов уходили с таплинка — выглядел как список ссылок, без доверия.
+          <strong>🧩 Задача:</strong> 60% клиентов уходили с таплинка — выглядел как список ссылок, без доверия.
         </div>
         <div class="case-text" style="text-align: left;">
-          <strong>🧠 Решение:</strong> Создал таплинк в стиле «минимализм + эмпатия»:<br>
-          — фото психолога (естественная улыбка, soft light),<br>
-          — иконки вместо текста,<br>
-          — кнопка «Записаться» — розово-золотая, с hover-эффектом.
+          <strong>🧠 Решение:</strong> Создал таплинк в стиле «минимализм + эмпатия» с фото психолога, иконками и розово-золотой кнопкой.
         </div>
         <div class="result-stats" style="text-align: left;">
-          <strong>📈 Результат:</strong> +22% к заявкам за 2 недели. Среднее время на странице — с 12 до 38 секунд.
+          <strong>📈 Результат:</strong> +22% к заявкам. Среднее время на странице — с 12 до 38 секунд.
         </div>
         <a href="mailto:vnik50587@gmail.com?subject=Кейс%3A%20Таплинк%20для%20психолога" class="cta-button">✍️ Пишите →</a>
       </div>
 
-      <!-- КЕЙС 3: Оформление ВК -->
-      <div style="background: #1A1A1A; border-radius: 16px; padding: 32px; margin-bottom: 40px; text-align: center;">
+      <!-- УСЛУГА: ОФОРМЛЕНИЕ СОЦСЕТЕЙ -->
+      <div id="service-smm" style="background: #1A1A1A; border-radius: 16px; padding: 32px; margin-bottom: 40px; text-align: center; scroll-margin-top: 80px;">
         <div style="margin-bottom: 24px;">
           <img src="images/avatar-d.jpg" alt="аватарка девушки" style="max-width: 100%; border-radius: 12px;">
           <p style="font-size: 14px; opacity: 0.7; margin-top: 8px;">Обложка ВК с медальоном</p>
         </div>
-        <span style="background: linear-gradient(90deg, #FFB6C1, #FFD700); color: #1A1A1A; font-weight: 600; padding: 4px 12px; border-radius: 20px; font-size: 14px; display: inline-block; margin-bottom: 16px;">
-          → +37% к сохранениям постов
-        </span>
-        <h3 style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 26px; margin: 16px 0;">👑 Оформление ВК: «женственный шик»</h3>
+        <span class="badge">👑 УСЛУГА: ОФОРМЛЕНИЕ СОЦСЕТЕЙ → +37% сохранений постов</span>
+        <h3 style="margin: 16px 0;">👑 Оформление ВК: «женственный шик»</h3>
         <div class="case-text" style="text-align: left;">
           <strong>🧩 Задача:</strong> Эксперт не выделялась в ленте — стандартное оформление, низкая узнаваемость.
         </div>
         <div class="case-text" style="text-align: left;">
-          <strong>🧠 Решение:</strong> Разработал бренд-стиль «женственный шик»:<br>
-          — медальон с профилем в золотом свете,<br>
-          — радиальные лучи → эффект «сияния»,<br>
-          — шрифты: Montserrat Bold + кистевые акценты.
+          <strong>🧠 Решение:</strong> Разработал бренд-стиль «женственный шик» с медальоном, золотым светом и радиальными лучами.
         </div>
         <div class="result-stats" style="text-align: left;">
-          <strong>📈 Результат:</strong> +37% к сохранениям постов, +15% к росту подписчиков за месяц.
+          <strong>📈 Результат:</strong> +37% сохранений постов, +15% роста подписчиков за месяц.
         </div>
         <a href="mailto:vnik50587@gmail.com?subject=Кейс%3A%20Оформление%20ВК" class="cta-button">✍️ Пишите →</a>
       </div>
 
-      <!-- КЕЙС 4: Контекстная реклама + маркетплейс -->
-      <div style="background: #1A1A1A; border-radius: 16px; padding: 32px; margin-bottom: 40px; text-align: center;">
+      <!-- УСЛУГА: КОНТЕКСТНАЯ РЕКЛАМА -->
+      <div id="service-ads" style="background: #1A1A1A; border-radius: 16px; padding: 32px; margin-bottom: 40px; text-align: center; scroll-margin-top: 80px;">
         <div style="margin-bottom: 24px;">
           <img src="images/yandex-direct.jpg" alt="Яндекс.Директ + маркетплейс" style="max-width: 100%; border-radius: 12px;">
           <p style="font-size: 14px; opacity: 0.7; margin-top: 8px;">Настройка рекламы + продвижение на маркетплейсе</p>
         </div>
-        <span style="background: linear-gradient(90deg, #FFB6C1, #FFD700); color: #1A1A1A; font-weight: 600; padding: 4px 12px; border-radius: 20px; font-size: 14px; display: inline-block; margin-bottom: 16px;">
-          → +32% к заявкам, CPL −32%, рост продаж на маркетплейсе
-        </span>
-        <h3 style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 26px; margin: 16px 0;">📈 Продвижение товара: Яндекс.Директ + маркетплейс</h3>
+        <span class="badge">📢 УСЛУГА: КОНТЕКСТНАЯ РЕКЛАМА → +32% заявок, CPL −32%</span>
+        <h3 style="margin: 16px 0;">📈 Продвижение товара: Яндекс.Директ + маркетплейс</h3>
         <div class="case-text" style="text-align: left;">
-          <strong>🧩 Задача:</strong> Продажи на маркетплейсе были нестабильны, внешнего трафика не было. Требовалось увеличить количество заказов и снизить стоимость привлечения.
+          <strong>🧩 Задача:</strong> Продажи на маркетплейсе были нестабильны, внешнего трафика не было.
         </div>
         <div class="case-text" style="text-align: left;">
-          <strong>🧠 Решение:</strong><br>
-          — Настроил рекламную кампанию в Яндекс.Директ на карточки товаров<br>
-          — Создал в Figma баннеры для РСЯ и поиска<br>
-          — Оптимизировал карточки товаров на маркетплейсе (заголовки, фото, описание)<br>
-          — Настроил аналитику, чтобы отслеживать заказы с рекламы
+          <strong>🧠 Решение:</strong> Настройка Яндекс.Директа, создание баннеров в Figma, оптимизация карточек.
         </div>
         <div class="result-stats" style="text-align: left;">
           <strong>📈 Результат за 5 недель:</strong><br>
-          — CPL снизился с 1800 ₽ до 1220 ₽ (−32%)<br>
-          — Количество заказов выросло на +50%<br>
-          — CTR объявлений: с 1,8% до 2,7%
+          — CPL: с 1800 ₽ до 1220 ₽ (−32%)<br>
+          — Заказы: +50%<br>
+          — CTR: с 1,8% до 2,7%
         </div>
-        <p style="font-size: 16px; line-height: 1.5; margin-top: 16px; opacity: 0.7; font-style: italic; text-align: left;">
-          *Комплексный подход: внешняя реклама + внутренняя оптимизация маркетплейса. Без «волшебных кнопок» — только системная работа.*
-        </p>
         <a href="mailto:vnik50587@gmail.com?subject=Кейс%3A%20Яндекс.Директ%20%2B%20маркетплейс" class="cta-button">✍️ Пишите →</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ДЛЯ КОГО ЭТО с якорной ссылкой -->
-<section id="for-whom" aria-label="Для кого это">
+<!-- ДЛЯ КОГО ЭТО -->
+<section id="for-whom">
   <div style="background: #121212; color: #FFFFFF; padding: 60px 20px;">
     <div class="container" style="text-align: center; margin-bottom: 40px;">
       <h2 style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 36px;">Вы получите максимальную отдачу, если...</h2>
@@ -487,8 +487,8 @@
   </div>
 </section>
 
-<!-- ИНСТРУМЕНТЫ & ПОДХОД с якорной ссылкой -->
-<section id="tools" aria-label="Инструменты и подход">
+<!-- ИНСТРУМЕНТЫ & ПОДХОД -->
+<section id="tools">
   <div style="background: #121212; color: #FFFFFF; padding: 60px 20px;">
     <div class="container" style="text-align: center; margin-bottom: 40px;">
       <h2 style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 36px;">Как я работаю: системно, вдумчиво, с AI-ускорением</h2>
@@ -534,8 +534,8 @@
   </div>
 </section>
 
-<!-- ФУТЕР с якорными ссылками на все блоки -->
-<footer aria-label="Подвал сайта">
+<!-- ФУТЕР -->
+<footer>
   <div style="background: #0D0D0D; color: #FFFFFF; padding: 50px 20px; border-top: 1px solid #222;">
     <div style="max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: flex-start; gap: 30px;">
       <div style="flex: 0 0 200px; text-align: center;">
@@ -559,6 +559,7 @@
       <div style="margin-top: 16px; display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; font-size: 14px;">
         <a href="#about" style="color: #808080; text-decoration: none;">Обо мне</a>
         <a href="#cases" style="color: #808080; text-decoration: none;">Кейсы</a>
+        <a href="#services" style="color: #808080; text-decoration: none;">Услуги</a>
         <a href="#for-whom" style="color: #808080; text-decoration: none;">Для кого</a>
         <a href="#tools" style="color: #808080; text-decoration: none;">Инструменты</a>
       </div>
