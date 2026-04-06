@@ -150,16 +150,12 @@
 <!-- HERO-БЛОК с фиксированным раскрывающимся меню -->
 <section id="hero">
   <div style="background: #1A1A1A; color: #FFFFFF; padding: 60px 20px; text-align: center; position: relative;">
-    <!-- Фоновое изображение -->
     <div style="background: url('images/hero-bg.jpg') center/cover no-repeat; height: 100%; filter: brightness(0.8); position: absolute; top: 0; left: 0; right: 0; opacity: 0.3; z-index: 0;"></div>
     
-    <!-- Фиксированное меню-бургер (всегда видимо при прокрутке) -->
     <div style="position: fixed; top: 24px; right: 24px; z-index: 1000;">
       <button id="menuToggle" style="background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(8px); border: 1px solid rgba(255, 215, 0, 0.5); border-radius: 50%; width: 48px; height: 48px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
         <span style="font-size: 28px; color: #FFD700;">☰</span>
       </button>
-      
-      <!-- Выпадающее меню -->
       <div id="dropdownMenu" style="position: absolute; top: 56px; right: 0; background: #1A1A1A; border-radius: 16px; padding: 12px 0; min-width: 200px; box-shadow: 0 8px 24px rgba(0,0,0,0.4); border: 1px solid #333; display: none; flex-direction: column; z-index: 1001;">
         <a href="#about" style="padding: 12px 24px; color: #FFD700; text-decoration: none; transition: background 0.2s; font-weight: 500;">👤 Обо мне</a>
         <a href="#cases" style="padding: 12px 24px; color: #FFD700; text-decoration: none; transition: background 0.2s; font-weight: 500;">📁 Кейсы</a>
@@ -180,71 +176,55 @@
         Работаю удаленно, свободный график. Беру немного проектов — но каждый делаю глубоко и качественно.
       </p>
       <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 24px;">
-        <a href="#cases" style="background: linear-gradient(135deg, #FFB6C1, #FFD700); color: #1A1A1A; font-weight: 600; padding: 14px 32px; border-radius: 8px; text-decoration: none;">
-          Смотреть кейсы
-        </a>
-        <a href="https://vk.com/nikvirko" target="_blank" rel="noopener noreferrer" style="color: #FFD700; font-weight: 600; text-decoration: underline;">
-          Написать в VK
-        </a>
+        <a href="#cases" style="background: linear-gradient(135deg, #FFB6C1, #FFD700); color: #1A1A1A; font-weight: 600; padding: 14px 32px; border-radius: 8px; text-decoration: none;">Смотреть кейсы</a>
+        <a href="https://vk.com/nikvirko" target="_blank" rel="noopener noreferrer" style="color: #FFD700; font-weight: 600; text-decoration: underline;">Написать в VK</a>
       </div>
     </div>
   </div>
 </section>
 
 <script>
-  // Логика для раскрывающегося меню
   const menuToggle = document.getElementById('menuToggle');
   const dropdownMenu = document.getElementById('dropdownMenu');
-
   menuToggle.addEventListener('click', function(event) {
     event.stopPropagation();
-    if (dropdownMenu.style.display === 'flex') {
-      dropdownMenu.style.display = 'none';
-    } else {
-      dropdownMenu.style.display = 'flex';
-    }
+    dropdownMenu.style.display = dropdownMenu.style.display === 'flex' ? 'none' : 'flex';
   });
-
-  // Закрываем меню при клике вне его
   document.addEventListener('click', function(event) {
     if (!menuToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
       dropdownMenu.style.display = 'none';
     }
   });
-
-  // Закрываем меню после клика по ссылке
-  const menuLinks = dropdownMenu.querySelectorAll('a');
-  menuLinks.forEach(link => {
-    link.addEventListener('click', function() {
-      dropdownMenu.style.display = 'none';
-    });
+  document.querySelectorAll('#dropdownMenu a').forEach(link => {
+    link.addEventListener('click', () => dropdownMenu.style.display = 'none');
   });
 </script>
+
 <!-- ОБО МНЕ -->
 <section id="about">
   <div style="background: #121212; color: #FFFFFF; padding: 60px 20px;">
     <div style="max-width: 900px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; align-items: center;">
       <div style="flex: 1; min-width: 300px;">
-        <h2 style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 32px; margin-bottom: 20px;">
-          Николай Вирко — Трафик-менеджер маркетплейсов | Специалист по контекстной рекламе
-        </h2>
-        <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6; margin-bottom: 16px;">
-          ✅ <strong>Сертифицированный специалист по продвижению на маркетплейсах и контекстной рекламе</strong><br>
-          <em>Курсы: Нетология, Академия Е. Андрианова, NOVA, Т-Образование</em>
-        </p>
-        <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6; margin-bottom: 16px;">
-          За 2+ года создал 50+ проектов: от презентаций с <strong>+43% к инвестициям</strong> до настройки рекламы со <strong>снижением CPL на 32%</strong> и вывода на маркетплейсы.
-        </p>
-        <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6;">
-          <em>Сочетаю трафик-менеджмент маркетплейсов, контекстную рекламу, дизайн креативов и работу с нейросетями.</em>
-        </p>
+        <h2 style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 32px; margin-bottom: 20px;">Николай Вирко — Трафик-менеджер маркетплейсов | Специалист по контекстной рекламе</h2>
+        <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6; margin-bottom: 16px;">✅ <strong>Сертифицированный специалист по продвижению на маркетплейсах и контекстной рекламе</strong><br><em>Курсы: Нетология, Академия Е. Андрианова, NOVA, Т-Образование</em></p>
+        <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6; margin-bottom: 16px;">За 2+ года создал 50+ проектов: от презентаций с <strong>+43% к инвестициям</strong> до настройки рекламы со <strong>снижением CPL на 32%</strong> и вывода на маркетплейсы.</p>
+        <p style="font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6;"><em>Сочетаю трафик-менеджмент маркетплейсов, контекстную рекламу, дизайн креативов и работу с нейросетями.</em></p>
       </div>
-      <div style="flex: 0 0 200px; text-align: center;">
-        <img src="images/avatar.jpg" alt="Николай Вирко" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.3);">
-      </div>
+      <div style="flex: 0 0 200px; text-align: center;"><img src="images/avatar.jpg" alt="Николай Вирко" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.3);"></div>
     </div>
   </div>
 </section>
+
+<!-- НАВИГАЦИЯ ПО НИШАМ (кнопки-фильтры) -->
+<div style="background: #121212; border-bottom: 1px solid #333;">
+  <div class="container" style="padding: 16px 20px; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;">
+    <a href="#case-jewelry" style="background: #1A1A1A; padding: 8px 20px; border-radius: 40px; text-decoration: none; color: #FFD700; font-weight: 500; border: 1px solid #333; transition: all 0.2s;">💎 Украшения</a>
+    <a href="#case-home" style="background: #1A1A1A; padding: 8px 20px; border-radius: 40px; text-decoration: none; color: #FFD700; font-weight: 500; border: 1px solid #333; transition: all 0.2s;">🏠 Товары для дома</a>
+    <a href="#case-cosmetics" style="background: #1A1A1A; padding: 8px 20px; border-radius: 40px; text-decoration: none; color: #FFD700; font-weight: 500; border: 1px solid #333; transition: all 0.2s;">💄 Косметика</a>
+    <a href="#case-pillow" style="background: #1A1A1A; padding: 8px 20px; border-radius: 40px; text-decoration: none; color: #FFD700; font-weight: 500; border: 1px solid #333; transition: all 0.2s;">🛏️ Здоровье</a>
+    <a href="#case-clothing" style="background: #1A1A1A; padding: 8px 20px; border-radius: 40px; text-decoration: none; color: #FFD700; font-weight: 500; border: 1px solid #333; transition: all 0.2s;">👗 Одежда</a>
+  </div>
+</div>
 
 <!-- СЕКЦИЯ КЕЙСОВ -->
 <section id="cases">
@@ -262,75 +242,28 @@
           <div class="case-content">
             <span class="badge">💎 НИША: УКРАШЕНИЯ → +32% CTR / +18% конверсии</span>
             <div class="images-vertical">
-              <div class="image-block">
-                <div class="image-label">Обложка</div>
-                <div class="image-placeholder">
-                  <img src="https://vnik74.github.io/images/cover-earrings.jpg" alt="Серьги с натуральным жемчугом">
-                </div>
-              </div>
-              <div class="image-block">
-                <div class="image-label">Характеристики продукта</div>
-                <div class="image-placeholder">
-                  <img src="https://vnik74.github.io/images/карточка%20для%20Wildberries.jpg" alt="характеристики, описание серьги">
-                </div>
-              </div>
+              <div class="image-block"><div class="image-label">Обложка</div><div class="image-placeholder"><img src="https://vnik74.github.io/images/cover-earrings.jpg" alt="Серьги с натуральным жемчугом"></div></div>
+              <div class="image-block"><div class="image-label">Характеристики продукта</div><div class="image-placeholder"><img src="https://vnik74.github.io/images/карточка%20для%20Wildberries.jpg" alt="характеристики, описание серьги"></div></div>
             </div>
-            <div class="case-text">
-              <strong>🧩 Задача:</strong> Карточка не привлекала внимание в выдаче и не доводила до покупки: слабые обложки, отсутствие логики показа товара, мало деталей. Клиент терял бюджет на рекламе.
-            </div>
-            <div class="case-text">
-              <strong>🧠 Решение:</strong><br>
-              — 4 обложки с разными сценариями (предметка, на ухе, портрет, лайфстайл).<br>
-              — 6 экранов внутри карточки: эмоция → детали → преимущества.<br>
-              — Крупные планы изделия + съёмка на модели для масштаба.<br>
-              — Инфографика: материал, вес, гипоаллергенно.
-            </div>
-            <div class="result-stats">
-              <strong>📈 Результат:</strong><br>
-              • CTR: +32% &nbsp;&nbsp; • Конверсия: +18% &nbsp;&nbsp; • Глубина просмотра: +27%<br>
-              • Снижение CPA: −23% &nbsp;&nbsp; • Отказы: −21%
-            </div>
-            <a href="mailto:vnik50587@gmail.com?subject=Кейс%3A%20Украшения%20для%20женщин" class="cta-button">
-              ✍️ Пишите →
-            </a>
+            <div class="case-text"><strong>🧩 Задача:</strong> Карточка не привлекала внимание в выдаче и не доводила до покупки: слабые обложки, отсутствие логики показа товара, мало деталей. Клиент терял бюджет на рекламе.</div>
+            <div class="case-text"><strong>🧠 Решение:</strong><br>— 4 обложки с разными сценариями (предметка, на ухе, портрет, лайфстайл).<br>— 6 экранов внутри карточки: эмоция → детали → преимущества.<br>— Крупные планы изделия + съёмка на модели для масштаба.<br>— Инфографика: материал, вес, гипоаллергенно.</div>
+            <div class="result-stats"><strong>📈 Результат:</strong><br>• CTR: +32% &nbsp;&nbsp; • Конверсия: +18% &nbsp;&nbsp; • Глубина просмотра: +27%<br>• Снижение CPA: −23% &nbsp;&nbsp; • Отказы: −21%</div>
+            <a href="mailto:vnik50587@gmail.com?subject=Кейс%3A%20Украшения%20для%20женщин" class="cta-button">✍️ Пишите →</a>
           </div>
         </div>
 
-        <!-- НИША: ТОВАРЫ ДЛЯ ДОМА -->
+        <!-- НИША: ТОВАРЫ ДЛЯ ДОМА (полотенца) -->
         <div class="case-card" id="case-home">
           <div class="case-content">
             <span class="badge">🏠 НИША: ТОВАРЫ ДЛЯ ДОМА → +28% выручки / −19% CPA</span>
             <div class="images-vertical">
-              <div class="image-block">
-                <div class="image-label">Обложка</div>
-                <div class="image-placeholder">
-                  <img src="https://vnik74.github.io/images/cover-set_of_ towels.png" alt="Набор махровых полотенец">
-                </div>
-              </div>
-              <div class="image-block">
-                <div class="image-label">Характеристики продукта</div>
-                <div class="image-placeholder">
-                  <img src="https://vnik74.github.io/images/Description_of _he towel_set.png" alt="Описание набора махровых полотенец">
-                </div>
-              </div>
+              <div class="image-block"><div class="image-label">Обложка</div><div class="image-placeholder"><img src="https://vnik74.github.io/images/cover-set_of_ towels.png" alt="Набор махровых полотенец"></div></div>
+              <div class="image-block"><div class="image-label">Характеристики продукта</div><div class="image-placeholder"><img src="https://vnik74.github.io/images/Description_of _he towel_set.png" alt="Описание набора махровых полотенец"></div></div>
             </div>
-            <div class="case-text">
-              <strong>🧩 Задача:</strong> Карточки товаров для дома терялись среди конкурентов — покупатели не видели качество и масштаб.
-            </div>
-            <div class="case-text">
-              <strong>🧠 Решение:</strong><br>
-              — Единый стиль под матрицу (уют, функциональность).<br>
-              — Визуальная воронка: общий вид → детали → товар в интерьере → преимущества.<br>
-              — Инфографика «для каких помещений», «уровень сложности ухода».
-            </div>
-            <div class="result-stats">
-              <strong>📈 Результат:</strong><br>
-              • Выручка: +28% &nbsp;&nbsp; • CTR: +35% &nbsp;&nbsp; • CPC: −19%<br>
-              • Конверсия в корзину: +22% &nbsp;&nbsp; • Повторные продажи: +15%
-            </div>
-            <a href="mailto:vnik50587@gmail.com?subject=Кейс%3A%20Товары%20для%20дома" class="cta-button">
-              ✍️ Пишите →
-            </a>
+            <div class="case-text"><strong>🧩 Задача:</strong> Карточки товаров для дома терялись среди конкурентов — покупатели не видели качество и масштаб.</div>
+            <div class="case-text"><strong>🧠 Решение:</strong><br>— Единый стиль под матрицу (уют, функциональность).<br>— Визуальная воронка: общий вид → детали → товар в интерьере → преимущества.<br>— Инфографика «для каких помещений», «уровень сложности ухода».</div>
+            <div class="result-stats"><strong>📈 Результат:</strong><br>• Выручка: +28% &nbsp;&nbsp; • CTR: +35% &nbsp;&nbsp; • CPC: −19%<br>• Конверсия в корзину: +22% &nbsp;&nbsp; • Повторные продажи: +15%</div>
+            <a href="mailto:vnik50587@gmail.com?subject=Кейс%3A%20Товары%20для%20дома" class="cta-button">✍️ Пишите →</a>
           </div>
         </div>
 
@@ -339,135 +272,59 @@
           <div class="case-content">
             <span class="badge">💄 НИША: КОСМЕТИКА → +41% конверсии / −25% отказов</span>
             <div class="images-vertical">
-              <div class="image-block">
-                <div class="image-label">Обложка</div>
-                <div class="image-placeholder">
-                  <img src="https://vnik74.github.io/images/Обложка-крем_сыворотка.png" alt="Обложка-крем сыворотка">
-                </div>
-              </div>
-              <div class="image-block">
-                <div class="image-label">Характеристики продукта</div>
-                <div class="image-placeholder">
-                  <img src="https://vnik74.github.io/images/описаниние-крем%20сыврортка.png" alt="Описание-крем сыворотка">
-                </div>
-              </div>
+              <div class="image-block"><div class="image-label">Обложка</div><div class="image-placeholder"><img src="https://vnik74.github.io/images/Обложка-крем_сыворотка.png" alt="Обложка-крем сыворотка"></div></div>
+              <div class="image-block"><div class="image-label">Характеристики продукта</div><div class="image-placeholder"><img src="https://vnik74.github.io/images/описаниние-крем%20сыврортка.png" alt="Описание-крем сыворотка"></div></div>
             </div>
-            <div class="case-text">
-              <strong>🧩 Задача:</strong> Карточки не вызывали доверия, не показывали текстуру и результат применения.
+            <div class="case-text"><strong>🧩 Задача:</strong> Карточки не вызывали доверия, не показывали текстуру и результат применения.</div>
+            <div class="case-text"><strong>🧠 Решение:</strong><br>— Акцент на «до/после» (макро кожи с текстурой).<br>— Блоки: состав → нанесение → эффект → безопасность.<br>— Крупный план аппликатора/текстуры.<br>— Визуализация компонентов через иконки.</div>
+            <div class="result-stats"><strong>📈 Результат:</strong><br>• Конверсия: +41% &nbsp;&nbsp; • Отказы: −25% &nbsp;&nbsp; • Средний чек: +12%<br>• Время просмотра: +35 сек &nbsp;&nbsp; • CAC: −28%</div>
+            <a href="mailto:vnik50587@gmail.com?subject=Кейс%3A%20Косметика" class="cta-button">✍️ Пишите →</a>
+          </div>
+        </div>
+
+        <!-- НИША: ОРТОПЕДИЧЕСКАЯ ПОДУШКА (Здоровье) -->
+        <div class="case-card" id="case-pillow">
+          <div class="case-content">
+            <span class="badge">🛏️ НИША: ТОВАРЫ ДЛЯ ЗДОРОВЬЯ (ортопедическая подушка) → +28% выручки / −19% CPA</span>
+            <div class="images-vertical">
+              <div class="image-block"><div class="image-label">Обложка</div><div class="image-placeholder"><img src="https://vnik74.github.io/images/ortopedicheskaya-podushka.png" alt="Ортопедическая подушка с эффектом памяти"></div></div>
+              <div class="image-block"><div class="image-label">Характеристики продукта</div><div class="image-placeholder"><img src="https://vnik74.github.io/images/ortopedicheskaya-podushka-voronka.png" alt="Воронка ортопедической подушки"></div></div>
             </div>
-            <div class="case-text">
-              <strong>🧠 Решение:</strong><br>
-              — Акцент на «до/после» (макро кожи с текстурой).<br>
-              — Блоки: состав → нанесение → эффект → безопасность.<br>
-              — Крупный план аппликатора/текстуры.<br>
-              — Визуализация компонентов через иконки.
+            <div class="case-text"><strong>🧩 Задача:</strong> Карточка ортопедической подушки терялась среди конкурентов — покупатели не видели анатомическую форму, эффект памяти и преимущества для здоровья сна.</div>
+            <div class="case-text"><strong>🧠 Решение:</strong><br>— Создал обложку с акцентом на комфорт и правильное положение шеи.<br>— Воронка: форма подушки → материалы (пена с эффектом памяти) → положение во сне → преимущества для здоровья.<br>— Инфографика: «снимает напряжение шеи», «гипоаллергенно», «чехол стирается».</div>
+            <div class="result-stats"><strong>📈 Результат:</strong><br>• Выручка: +28% &nbsp;&nbsp; • CTR: +35% &nbsp;&nbsp; • CPC: −19%<br>• Конверсия в корзину: +22% &nbsp;&nbsp; • Повторные продажи: +15%</div>
+            <a href="mailto:vnik50587@gmail.com?subject=Кейс%3A%20Ортопедическая%20подушка" class="cta-button">✍️ Пишите →</a>
+          </div>
+        </div>
+
+        <!-- НИША: ЖЕНСКАЯ ОДЕЖДА (льняное платье) -->
+        <div class="case-card" id="case-clothing">
+          <div class="case-content">
+            <span class="badge">👗 НИША: ЖЕНСКАЯ ОДЕЖДА (льняное платье) → +32% CTR / +21% конверсии</span>
+            <div class="images-vertical">
+              <div class="image-block"><div class="image-label">Обложка</div><div class="image-placeholder"><img src="https://vnik74.github.io/images/lnyanoe-plate-midi.png" alt="Льняное платье миди свободного кроя"></div></div>
+              <div class="image-block"><div class="image-label">Характеристики продукта</div><div class="image-placeholder"><img src="https://vnik74.github.io/images/lnyanoe-plate-midi-voronka.png" alt="Воронка льняного платья"></div></div>
             </div>
-            <div class="result-stats">
-              <strong>📈 Результат:</strong><br>
-              • Конверсия: +41% &nbsp;&nbsp; • Отказы: −25% &nbsp;&nbsp; • Средний чек: +12%<br>
-              • Время просмотра: +35 сек &nbsp;&nbsp; • CAC: −28%
-            </div>
-            <a href="mailto:vnik50587@gmail.com?subject=Кейс%3A%20Косметика" class="cta-button">
-              ✍️ Пишите →
-            </a>
+            <div class="case-text"><strong>🧩 Задача:</strong> Карточка льняного платья терялась среди тысяч других — покупатели не видели качество ткани, посадку и универсальность.</div>
+            <div class="case-text"><strong>🧠 Решение:</strong><br>— Обложка с акцентом на натуральность и лёгкость.<br>— Воронка: ткань крупно → посадка на модели → сочетание с аксессуарами → уход (стирка).<br>— Инфографика: «дышит», «не мнётся», «100% лён».</div>
+            <div class="result-stats"><strong>📈 Результат:</strong><br>• CTR: +32% &nbsp;&nbsp; • Конверсия: +21% &nbsp;&nbsp; • Время просмотра: +25 сек<br>• Отказы: −18% &nbsp;&nbsp; • Повторные покупки: +12%</div>
+            <a href="mailto:vnik50587@gmail.com?subject=Кейс%3A%20Льняное%20платье" class="cta-button">✍️ Пишите →</a>
           </div>
         </div>
       </div>
-      <!-- НИША: ОРТОПЕДИЧЕСКАЯ ПОДУШКА (Товары для дома / Здоровье) -->
-<div class="case-card" id="case-home">
-  <div class="case-content">
-    <span class="badge">🛏️ НИША: ТОВАРЫ ДЛЯ ЗДОРОВЬЯ (ортопедическая подушка) → +28% выручки / −19% CPA</span>
-    <div class="images-vertical">
-      <div class="image-block">
-        <div class="image-label">Обложка</div>
-        <div class="image-placeholder">
-          <img src="https://vnik74.github.io/images/ortopedicheskaya-podushka.png" alt="Ортопедическая подушка с эффектом памяти">
-        </div>
-      </div>
-      <div class="image-block">
-        <div class="image-label">Характеристики продукта</div>
-        <div class="image-placeholder">
-          <img src="https://vnik74.github.io/images/ortopedicheskaya-podushka-voronka.png" alt="Воронка ортопедической подушки">
-        </div>
-      </div>
-    </div>
-    <div class="case-text">
-      <strong>🧩 Задача:</strong> Карточка ортопедической подушки терялась среди конкурентов — покупатели не видели анатомическую форму, эффект памяти и преимущества для здоровья сна.
-    </div>
-    <div class="case-text">
-      <strong>🧠 Решение:</strong><br>
-      — Создал обложку с акцентом на комфорт и правильное положение шеи.<br>
-      — Воронка: форма подушки → материалы (пена с эффектом памяти) → положение во сне → преимущества для здоровья.<br>
-      — Инфографика: «снимает напряжение шеи», «гипоаллергенно», «чехол стирается».
-    </div>
-    <div class="result-stats">
-      <strong>📈 Результат:</strong><br>
-      • Выручка: +28% &nbsp;&nbsp; • CTR: +35% &nbsp;&nbsp; • CPC: −19%<br>
-      • Конверсия в корзину: +22% &nbsp;&nbsp; • Повторные продажи: +15%
-    </div>
-    <a href="mailto:vnik50587@gmail.com?subject=Кейс%3A%20Ортопедическая%20подушка" class="cta-button">
-      ✍️ Пишите →
-    </a>
-  </div>
-</div>
-
-<!-- НИША: ЛЬНЯНОЕ ПЛАТЬЕ МИДИ (Женская одежда) -->
-<div class="case-card" id="case-clothing">
-  <div class="case-content">
-    <span class="badge">👗 НИША: ЖЕНСКАЯ ОДЕЖДА (льняное платье) → +32% CTR / +21% конверсии</span>
-    <div class="images-vertical">
-      <div class="image-block">
-        <div class="image-label">Обложка</div>
-        <div class="image-placeholder">
-          <img src="https://vnik74.github.io/images/lnyanoe-plate-midi.png" alt="Льняное платье миди свободного кроя">
-        </div>
-      </div>
-      <div class="image-block">
-        <div class="image-label">Характеристики продукта</div>
-        <div class="image-placeholder">
-          <img src="https://vnik74.github.io/images/lnyanoe-plate-midi-voronka.png" alt="Воронка льняного платья">
-        </div>
-      </div>
-    </div>
-    <div class="case-text">
-      <strong>🧩 Задача:</strong> Карточка льняного платья терялась среди тысяч других — покупатели не видели качество ткани, посадку и универсальность.
-    </div>
-    <div class="case-text">
-      <strong>🧠 Решение:</strong><br>
-      — Обложка с акцентом на натуральность и лёгкость.<br>
-      — Воронка: ткань крупно → посадка на модели → сочетание с аксессуарами → уход (стирка).<br>
-      — Инфографика: «дышит», «не мнётся», «100% лён».
-    </div>
-    <div class="result-stats">
-      <strong>📈 Результат:</strong><br>
-      • CTR: +32% &nbsp;&nbsp; • Конверсия: +21% &nbsp;&nbsp; • Время просмотра: +25 сек<br>
-      • Отказы: −18% &nbsp;&nbsp; • Повторные покупки: +12%
-    </div>
-    <a href="mailto:vnik50587@gmail.com?subject=Кейс%3A%20Льняное%20платье" class="cta-button">
-      ✍️ Пишите →
-    </a>
-  </div>
-</div>
 
       <!-- Финальный блок внутри кейсов -->
       <div style="background: linear-gradient(135deg, #FFB6C1 0%, #FFD700 100%); color: #1A1A1A; border-radius: 28px; padding: 36px; margin-top: 60px; text-align: center;">
         <h3 style="font-size: 28px; margin-bottom: 16px; font-weight: 800;">Ты тоже хочешь такие результаты?</h3>
-        <p style="font-size: 18px; margin-bottom: 12px; max-width: 600px; margin-left: auto; margin-right: auto; font-weight: 500;">
-          Разберу твои карточки, найду слабые места<br>
-          и предложу решение, которое реально увеличит продажи.
-        </p>
-        <p style="font-size: 15px; margin-bottom: 32px; opacity: 0.8;">
-          📌 Работаю с Wildberries и Ozon. Вдумчиво, без спешки, с результатом.
-        </p>
-        <a href="mailto:vnik50587@gmail.com?subject=Запрос%20на%20создание%20карточек" style="background: #1A1A1A; color: white; padding: 14px 32px; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-block; font-size: 16px;">
-          Напиши — обсудим →
-        </a>
+        <p style="font-size: 18px; margin-bottom: 12px; max-width: 600px; margin-left: auto; margin-right: auto; font-weight: 500;">Разберу твои карточки, найду слабые места<br>и предложу решение, которое реально увеличит продажи.</p>
+        <p style="font-size: 15px; margin-bottom: 32px; opacity: 0.8;">📌 Работаю с Wildberries и Ozon. Вдумчиво, без спешки, с результатом.</p>
+        <a href="mailto:vnik50587@gmail.com?subject=Запрос%20на%20создание%20карточек" style="background: #1A1A1A; color: white; padding: 14px 32px; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-block; font-size: 16px;">Напиши — обсудим →</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- УСЛУГИ / ФОРМАТЫ (дополнительные кейсы) -->
+<!-- УСЛУГИ / ФОРМАТЫ -->
 <section id="services">
   <div style="background: #121212; color: #FFFFFF; padding: 60px 20px;">
     <div class="container">
@@ -477,86 +334,43 @@
         <p style="font-size: 17px; opacity: 0.8; max-width: 680px; margin: 16px auto 0;">Презентации, таплинки, оформление соцсетей, настройка рекламы</p>
       </div>
 
-      <!-- УСЛУГА: ПРЕЗЕНТАЦИЯ -->
       <div id="service-presentation" style="background: #1A1A1A; border-radius: 16px; padding: 32px; margin-bottom: 40px; text-align: center; scroll-margin-top: 80px;">
-        <div style="margin-bottom: 24px;">
-          <img src="images/investments.jpg" alt="Инвестиции" style="max-width: 100%; border-radius: 12px;">
-          <p style="font-size: 14px; opacity: 0.7; margin-top: 8px;">Финальный вид презентации</p>
-        </div>
+        <div style="margin-bottom: 24px;"><img src="images/investments.jpg" alt="Инвестиции" style="max-width: 100%; border-radius: 12px;"><p style="font-size: 14px; opacity: 0.7; margin-top: 8px;">Финальный вид презентации</p></div>
         <span class="badge">📊 УСЛУГА: ИНВЕСТИЦИОННАЯ ПРЕЗЕНТАЦИЯ → +43% к конверсии</span>
         <h3 style="margin: 16px 0;">🎁 Инвестиционная презентация: подарки для женщин</h3>
-        <div class="case-text" style="text-align: left;">
-          <strong>🧩 Задача:</strong> Презентация «потерялась» у инвесторов: выглядела как Excel — без эмоций, без акцента на выгоде.
-        </div>
-        <div class="case-text" style="text-align: left;">
-          <strong>🧠 Решение:</strong> Переделал в стиле «роскошного минимализма» с розово-золотыми акцентами, фокусом на цифрах и фотореалистичными визуалами.
-        </div>
-        <div class="result-stats" style="text-align: left;">
-          <strong>📈 Результат:</strong> +43% к конверсии в инвестиции за 2 недели. Получил 3 новых инвестора.
-        </div>
+        <div class="case-text" style="text-align: left;"><strong>🧩 Задача:</strong> Презентация «потерялась» у инвесторов: выглядела как Excel — без эмоций, без акцента на выгоде.</div>
+        <div class="case-text" style="text-align: left;"><strong>🧠 Решение:</strong> Переделал в стиле «роскошного минимализма» с розово-золотыми акцентами, фокусом на цифрах и фотореалистичными визуалами.</div>
+        <div class="result-stats" style="text-align: left;"><strong>📈 Результат:</strong> +43% к конверсии в инвестиции за 2 недели. Получил 3 новых инвестора.</div>
         <a href="mailto:vnik50587@gmail.com?subject=Кейс%3A%20Инвестиционная%20презентация" class="cta-button">✍️ Пишите →</a>
       </div>
 
-      <!-- УСЛУГА: ТАПЛИНК -->
       <div id="service-taplink" style="background: #1A1A1A; border-radius: 16px; padding: 32px; margin-bottom: 40px; text-align: center; scroll-margin-top: 80px;">
-        <div style="margin-bottom: 24px;">
-          <img src="images/taplink.jpg" alt="Таплинк" style="max-width: 100%; border-radius: 12px;">
-          <p style="font-size: 14px; opacity: 0.7; margin-top: 8px;">Экран таплинка на iPhone</p>
-        </div>
+        <div style="margin-bottom: 24px;"><img src="images/taplink.jpg" alt="Таплинк" style="max-width: 100%; border-radius: 12px;"><p style="font-size: 14px; opacity: 0.7; margin-top: 8px;">Экран таплинка на iPhone</p></div>
         <span class="badge">🧠 УСЛУГА: ТАПЛИНК / ЛЕНДИНГ → +22% к заявкам</span>
         <h3 style="margin: 16px 0;">🧠 Таплинк для психолога</h3>
-        <div class="case-text" style="text-align: left;">
-          <strong>🧩 Задача:</strong> 60% клиентов уходили с таплинка — выглядел как список ссылок, без доверия.
-        </div>
-        <div class="case-text" style="text-align: left;">
-          <strong>🧠 Решение:</strong> Создал таплинк в стиле «минимализм + эмпатия» с фото психолога, иконками и розово-золотой кнопкой.
-        </div>
-        <div class="result-stats" style="text-align: left;">
-          <strong>📈 Результат:</strong> +22% к заявкам. Среднее время на странице — с 12 до 38 секунд.
-        </div>
+        <div class="case-text" style="text-align: left;"><strong>🧩 Задача:</strong> 60% клиентов уходили с таплинка — выглядел как список ссылок, без доверия.</div>
+        <div class="case-text" style="text-align: left;"><strong>🧠 Решение:</strong> Создал таплинк в стиле «минимализм + эмпатия» с фото психолога, иконками и розово-золотой кнопкой.</div>
+        <div class="result-stats" style="text-align: left;"><strong>📈 Результат:</strong> +22% к заявкам. Среднее время на странице — с 12 до 38 секунд.</div>
         <a href="mailto:vnik50587@gmail.com?subject=Кейс%3A%20Таплинк%20для%20психолога" class="cta-button">✍️ Пишите →</a>
       </div>
 
-      <!-- УСЛУГА: ОФОРМЛЕНИЕ СОЦСЕТЕЙ -->
       <div id="service-smm" style="background: #1A1A1A; border-radius: 16px; padding: 32px; margin-bottom: 40px; text-align: center; scroll-margin-top: 80px;">
-        <div style="margin-bottom: 24px;">
-          <img src="images/avatar-d.jpg" alt="аватарка девушки" style="max-width: 100%; border-radius: 12px;">
-          <p style="font-size: 14px; opacity: 0.7; margin-top: 8px;">Обложка ВК с медальоном</p>
-        </div>
+        <div style="margin-bottom: 24px;"><img src="images/avatar-d.jpg" alt="аватарка девушки" style="max-width: 100%; border-radius: 12px;"><p style="font-size: 14px; opacity: 0.7; margin-top: 8px;">Обложка ВК с медальоном</p></div>
         <span class="badge">👑 УСЛУГА: ОФОРМЛЕНИЕ СОЦСЕТЕЙ → +37% сохранений постов</span>
         <h3 style="margin: 16px 0;">👑 Оформление ВК: «женственный шик»</h3>
-        <div class="case-text" style="text-align: left;">
-          <strong>🧩 Задача:</strong> Эксперт не выделялась в ленте — стандартное оформление, низкая узнаваемость.
-        </div>
-        <div class="case-text" style="text-align: left;">
-          <strong>🧠 Решение:</strong> Разработал бренд-стиль «женственный шик» с медальоном, золотым светом и радиальными лучами.
-        </div>
-        <div class="result-stats" style="text-align: left;">
-          <strong>📈 Результат:</strong> +37% сохранений постов, +15% роста подписчиков за месяц.
-        </div>
+        <div class="case-text" style="text-align: left;"><strong>🧩 Задача:</strong> Эксперт не выделялась в ленте — стандартное оформление, низкая узнаваемость.</div>
+        <div class="case-text" style="text-align: left;"><strong>🧠 Решение:</strong> Разработал бренд-стиль «женственный шик» с медальоном, золотым светом и радиальными лучами.</div>
+        <div class="result-stats" style="text-align: left;"><strong>📈 Результат:</strong> +37% сохранений постов, +15% роста подписчиков за месяц.</div>
         <a href="mailto:vnik50587@gmail.com?subject=Кейс%3A%20Оформление%20ВК" class="cta-button">✍️ Пишите →</a>
       </div>
 
-      <!-- УСЛУГА: КОНТЕКСТНАЯ РЕКЛАМА -->
       <div id="service-ads" style="background: #1A1A1A; border-radius: 16px; padding: 32px; margin-bottom: 40px; text-align: center; scroll-margin-top: 80px;">
-        <div style="margin-bottom: 24px;">
-          <img src="images/yandex-direct.jpg" alt="Яндекс.Директ + маркетплейс" style="max-width: 100%; border-radius: 12px;">
-          <p style="font-size: 14px; opacity: 0.7; margin-top: 8px;">Настройка рекламы + продвижение на маркетплейсе</p>
-        </div>
+        <div style="margin-bottom: 24px;"><img src="images/yandex-direct.jpg" alt="Яндекс.Директ + маркетплейс" style="max-width: 100%; border-radius: 12px;"><p style="font-size: 14px; opacity: 0.7; margin-top: 8px;">Настройка рекламы + продвижение на маркетплейсе</p></div>
         <span class="badge">📢 УСЛУГА: КОНТЕКСТНАЯ РЕКЛАМА → +32% заявок, CPL −32%</span>
         <h3 style="margin: 16px 0;">📈 Продвижение товара: Яндекс.Директ + маркетплейс</h3>
-        <div class="case-text" style="text-align: left;">
-          <strong>🧩 Задача:</strong> Продажи на маркетплейсе были нестабильны, внешнего трафика не было.
-        </div>
-        <div class="case-text" style="text-align: left;">
-          <strong>🧠 Решение:</strong> Настройка Яндекс.Директа, создание баннеров в Figma, оптимизация карточек.
-        </div>
-        <div class="result-stats" style="text-align: left;">
-          <strong>📈 Результат за 5 недель:</strong><br>
-          — CPL: с 1800 ₽ до 1220 ₽ (−32%)<br>
-          — Заказы: +50%<br>
-          — CTR: с 1,8% до 2,7%
-        </div>
+        <div class="case-text" style="text-align: left;"><strong>🧩 Задача:</strong> Продажи на маркетплейсе были нестабильны, внешнего трафика не было.</div>
+        <div class="case-text" style="text-align: left;"><strong>🧠 Решение:</strong> Настройка Яндекс.Директа, создание баннеров в Figma, оптимизация карточек.</div>
+        <div class="result-stats" style="text-align: left;"><strong>📈 Результат за 5 недель:</strong><br>— CPL: с 1800 ₽ до 1220 ₽ (−32%)<br>— Заказы: +50%<br>— CTR: с 1,8% до 2,7%</div>
         <a href="mailto:vnik50587@gmail.com?subject=Кейс%3A%20Яндекс.Директ%20%2B%20маркетплейс" class="cta-button">✍️ Пишите →</a>
       </div>
     </div>
@@ -599,26 +413,10 @@
     </div>
     <div style="max-width: 900px; margin: 0 auto; background: #1A1A1A; border-radius: 16px; padding: 40px; box-shadow: 0 8px 24px rgba(0,0,0,0.2);">
       <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start;">
-        <div style="flex: 1; min-width: 200px;">
-          <div style="width: 40px; height: 40px; background: #FFB6C1; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; font-weight: bold; color: #121212;">1</div>
-          <h3 style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 20px; margin-bottom: 12px;">🎯 Анализ и стратегия</h3>
-          <p style="font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.6;">Изучаю нишу, ЦА, конкурентов, карточки товаров на маркетплейсе. Определяю структуру кампаний и KPI.</p>
-        </div>
-        <div style="flex: 1; min-width: 200px;">
-          <div style="width: 40px; height: 40px; background: #FFD700; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; font-weight: bold; color: #121212;">2</div>
-          <h3 style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 20px; margin-bottom: 12px;">🔧 Настройка рекламы</h3>
-          <p style="font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.6;">Яндекс.Директ — сбор семантики, минус-слова, кампании. Для маркетплейсов — настройка внешнего трафика на карточки.</p>
-        </div>
-        <div style="flex: 1; min-width: 200px;">
-          <div style="width: 40px; height: 40px; background: #1A1A1A; border: 2px solid #FFD700; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; font-weight: bold; color: #FFD700;">3</div>
-          <h3 style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 20px; margin-bottom: 12px;">🎨 Креативы + нейросети</h3>
-          <p style="font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.6;">Создаю баннеры в Figma, генерирую изображения через Midjourney, пишу тексты. Оптимизирую карточки на маркетплейсе.</p>
-        </div>
-        <div style="flex: 1; min-width: 200px;">
-          <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #FFB6C1, #FFD700); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; font-weight: bold; color: #121212;">4</div>
-          <h3 style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 20px; margin-bottom: 12px;">📊 Оптимизация и отчетность</h3>
-          <p style="font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.6;">A/B-тесты, отключение неэффективного, масштабирование работающих связок. Прозрачные отчеты.</p>
-        </div>
+        <div style="flex: 1; min-width: 200px;"><div style="width: 40px; height: 40px; background: #FFB6C1; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; font-weight: bold; color: #121212;">1</div><h3 style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 20px; margin-bottom: 12px;">🎯 Анализ и стратегия</h3><p style="font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.6;">Изучаю нишу, ЦА, конкурентов, карточки товаров на маркетплейсе. Определяю структуру кампаний и KPI.</p></div>
+        <div style="flex: 1; min-width: 200px;"><div style="width: 40px; height: 40px; background: #FFD700; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; font-weight: bold; color: #121212;">2</div><h3 style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 20px; margin-bottom: 12px;">🔧 Настройка рекламы</h3><p style="font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.6;">Яндекс.Директ — сбор семантики, минус-слова, кампании. Для маркетплейсов — настройка внешнего трафика на карточки.</p></div>
+        <div style="flex: 1; min-width: 200px;"><div style="width: 40px; height: 40px; background: #1A1A1A; border: 2px solid #FFD700; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; font-weight: bold; color: #FFD700;">3</div><h3 style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 20px; margin-bottom: 12px;">🎨 Креативы + нейросети</h3><p style="font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.6;">Создаю баннеры в Figma, генерирую изображения через Midjourney, пишу тексты. Оптимизирую карточки на маркетплейсе.</p></div>
+        <div style="flex: 1; min-width: 200px;"><div style="width: 40px; height: 40px; background: linear-gradient(135deg, #FFB6C1, #FFD700); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; font-weight: bold; color: #121212;">4</div><h3 style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 20px; margin-bottom: 12px;">📊 Оптимизация и отчетность</h3><p style="font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.6;">A/B-тесты, отключение неэффективного, масштабирование работающих связок. Прозрачные отчеты.</p></div>
       </div>
       <div style="margin-top: 40px; border-top: 1px solid #333; padding-top: 30px;">
         <h3 style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 24px; text-align: center; margin-bottom: 24px;">Мои инструменты</h3>
@@ -630,42 +428,30 @@
           <div><strong>📊 Аналитика:</strong> Яндекс.Метрика, Excel / Google Sheets</div>
         </div>
       </div>
-      <div style="margin-top: 30px; padding: 20px; background: rgba(255, 182, 193, 0.08); border-left: 4px solid #FFB6C1; font-style: italic; font-size: 17px;">
-        «Я не гонюсь за количеством проектов. Мой подход: взять немного — сделать качественно — получить предсказуемый результат. Работаю удаленно, свободный график, частичная занятость».
-      </div>
+      <div style="margin-top: 30px; padding: 20px; background: rgba(255, 182, 193, 0.08); border-left: 4px solid #FFB6C1; font-style: italic; font-size: 17px;">«Я не гонюсь за количеством проектов. Мой подход: взять немного — сделать качественно — получить предсказуемый результат. Работаю удаленно, свободный график, частичная занятость».</div>
     </div>
   </div>
 </section>
 
 <footer>
   <div style="background: #0D0D0D; color: #FFFFFF; padding: 50px 20px 30px; border-top: 1px solid #222; position: relative;">
-    <!-- Кнопка "Наверх" (появляется при прокрутке) -->
     <div id="toTopBtn" style="position: fixed; bottom: 30px; right: 30px; z-index: 100; opacity: 0; visibility: hidden; transition: all 0.3s ease;">
-      <a href="#hero" style="display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; background: linear-gradient(135deg, #FFB6C1, #FFD700); border-radius: 50%; text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: transform 0.2s;">
-        <span style="font-size: 28px; color: #1A1A1A; font-weight: bold;">↑</span>
-      </a>
+      <a href="#hero" style="display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; background: linear-gradient(135deg, #FFB6C1, #FFD700); border-radius: 50%; text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"><span style="font-size: 28px; color: #1A1A1A; font-weight: bold;">↑</span></a>
     </div>
-
     <div style="max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: flex-start; gap: 30px;">
-      <!-- Левая колонка: аватар -->
-      <div style="flex: 0 0 200px; text-align: center;">
-        <img src="images/avatar-circle.jpg" alt="Николай Вирко" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 3px solid #FFD700;">
-      </div>
-      <!-- Центральная колонка: контакты и кнопка -->
+      <div style="flex: 0 0 200px; text-align: center;"><img src="images/avatar-circle.jpg" alt="Николай Вирко" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 3px solid #FFD700;"></div>
       <div style="flex: 1; min-width: 250px;">
         <div style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 28px; margin-bottom: 10px;">Николай Вирко</div>
         <div style="font-size: 18px; color: #B0B0B0; margin-bottom: 20px;">Трафик-менеджер маркетплейсов | Специалист по контекстной рекламе</div>
         <p style="font-size: 18px; line-height: 1.5; margin-bottom: 24px;">Хотите получить бесплатный аудит вашей рекламы или карточки товара — напишите в VK.</p>
         <a href="https://vk.com/nikvirko" target="_blank" rel="noopener noreferrer" style="background: linear-gradient(135deg, #FFB6C1, #FFD700); color: #1A1A1A; font-weight: 700; padding: 12px 28px; border-radius: 8px; text-decoration: none; font-size: 17px; display: inline-block;">Написать в VK</a>
       </div>
-      <!-- Правая колонка: ссылки -->
       <div style="flex: 0 0 220px; text-align: right; font-size: 16px; line-height: 2.2;">
         <div style="margin-bottom: 12px;">✉️ <a href="mailto:vnik50587@gmail.com" style="color: #FFD700; text-decoration: none;">vnik50587@gmail.com</a></div>
         <div style="margin-bottom: 12px;">📄 <a href="https://chelyabinsk.hh.ru/resume/934112feff0fab95a20039ed1f676e7a554856" target="_blank" rel="noopener noreferrer" style="color: #FFD700; text-decoration: none;">Резюме на hh.ru</a></div>
         <div style="font-size: 13px; color: #808080; margin-top: 16px;">🔒 Конфиденциально. Без спама.</div>
       </div>
     </div>
-    <!-- Нижняя строка с копирайтом и навигацией -->
     <div style="max-width: 1000px; margin: 40px auto 0; padding-top: 24px; border-top: 1px solid #222; text-align: center;">
       <p style="font-size: 14px; color: #808080;">© 2026 Николай Вирко | Трафик-менеджер маркетплейсов | Специалист по контекстной рекламе | Нейросети | Figma</p>
       <div style="margin-top: 16px; display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; font-size: 14px;">
@@ -680,7 +466,6 @@
 </footer>
 
 <script>
-  // Показываем кнопку "Наверх" после прокрутки 300px
   window.addEventListener('scroll', function() {
     var btn = document.getElementById('toTopBtn');
     if (window.scrollY > 300) {
