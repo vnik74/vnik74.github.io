@@ -135,6 +135,20 @@
       background: rgba(255, 215, 0, 0.15);
       transform: scale(1.02);
     }
+    .filter-btn {
+      background: #1A1A1A;
+      padding: 8px 20px;
+      border-radius: 40px;
+      text-decoration: none;
+      color: #FFD700;
+      font-weight: 500;
+      border: 1px solid #333;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover {
+      background: rgba(255, 215, 0, 0.1);
+      transform: translateY(-2px);
+    }
     @media (max-width: 768px) {
       .case-content {
         padding: 24px;
@@ -215,18 +229,7 @@
   </div>
 </section>
 
-<!-- НАВИГАЦИЯ ПО НИШАМ (кнопки-фильтры) -->
-<div style="background: #121212; border-bottom: 1px solid #333;">
-  <div class="container" style="padding: 16px 20px; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;">
-    <a href="#case-jewelry" style="background: #1A1A1A; padding: 8px 20px; border-radius: 40px; text-decoration: none; color: #FFD700; font-weight: 500; border: 1px solid #333; transition: all 0.2s;">💎 Украшения</a>
-    <a href="#case-home" style="background: #1A1A1A; padding: 8px 20px; border-radius: 40px; text-decoration: none; color: #FFD700; font-weight: 500; border: 1px solid #333; transition: all 0.2s;">🏠 Товары для дома</a>
-    <a href="#case-cosmetics" style="background: #1A1A1A; padding: 8px 20px; border-radius: 40px; text-decoration: none; color: #FFD700; font-weight: 500; border: 1px solid #333; transition: all 0.2s;">💄 Косметика</a>
-    <a href="#case-pillow" style="background: #1A1A1A; padding: 8px 20px; border-radius: 40px; text-decoration: none; color: #FFD700; font-weight: 500; border: 1px solid #333; transition: all 0.2s;">🛏️ Здоровье</a>
-    <a href="#case-clothing" style="background: #1A1A1A; padding: 8px 20px; border-radius: 40px; text-decoration: none; color: #FFD700; font-weight: 500; border: 1px solid #333; transition: all 0.2s;">👗 Одежда</a>
-  </div>
-</div>
-
-<!-- СЕКЦИЯ КЕЙСОВ -->
+<!-- СЕКЦИЯ КЕЙСОВ (товарные ниши) -->
 <section id="cases">
   <div style="background: #121212; color: #FFFFFF; padding: 60px 20px;">
     <div class="container">
@@ -234,6 +237,15 @@
         <span style="background: rgba(255,215,0,0.15); color: #FFD700; padding: 6px 16px; border-radius: 40px; font-size: 13px; font-weight: 600;">Портфолио</span>
         <h2 style="font-size: 36px; margin-top: 16px; font-weight: 700;">Карточки для маркетплейсов, <br>которые продают</h2>
         <p style="font-size: 17px; opacity: 0.8; max-width: 680px; margin: 16px auto 0;">Не просто «запустить» — а так, чтобы росли продажи, снижалась стоимость привлечения и был понятный результат</p>
+      </div>
+
+      <!-- ФИЛЬТРЫ ПО НИШАМ (внутри раздела) -->
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 32px auto 20px;">
+        <a href="#case-jewelry" class="filter-btn">💎 Украшения</a>
+        <a href="#case-home" class="filter-btn">🏠 Товары для дома</a>
+        <a href="#case-cosmetics" class="filter-btn">💄 Косметика</a>
+        <a href="#case-pillow" class="filter-btn">🛏️ Здоровье</a>
+        <a href="#case-clothing" class="filter-btn">👗 Одежда</a>
       </div>
 
       <div class="case-grid">
@@ -324,7 +336,7 @@
   </div>
 </section>
 
-<!-- УСЛУГИ / ФОРМАТЫ -->
+<!-- СЕКЦИЯ УСЛУГИ И ФОРМАТЫ -->
 <section id="services">
   <div style="background: #121212; color: #FFFFFF; padding: 60px 20px;">
     <div class="container">
@@ -334,6 +346,15 @@
         <p style="font-size: 17px; opacity: 0.8; max-width: 680px; margin: 16px auto 0;">Презентации, таплинки, оформление соцсетей, настройка рекламы</p>
       </div>
 
+      <!-- ФИЛЬТРЫ ПО УСЛУГАМ (внутри раздела) -->
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 32px auto 20px;">
+        <a href="#service-presentation" class="filter-btn">📊 Презентации</a>
+        <a href="#service-taplink" class="filter-btn">🧠 Таплинки</a>
+        <a href="#service-smm" class="filter-btn">👑 Оформление соцсетей</a>
+        <a href="#service-ads" class="filter-btn">📢 Контекстная реклама</a>
+      </div>
+
+      <!-- УСЛУГА: ПРЕЗЕНТАЦИЯ -->
       <div id="service-presentation" style="background: #1A1A1A; border-radius: 16px; padding: 32px; margin-bottom: 40px; text-align: center; scroll-margin-top: 80px;">
         <div style="margin-bottom: 24px;"><img src="images/investments.jpg" alt="Инвестиции" style="max-width: 100%; border-radius: 12px;"><p style="font-size: 14px; opacity: 0.7; margin-top: 8px;">Финальный вид презентации</p></div>
         <span class="badge">📊 УСЛУГА: ИНВЕСТИЦИОННАЯ ПРЕЗЕНТАЦИЯ → +43% к конверсии</span>
@@ -344,6 +365,7 @@
         <a href="mailto:vnik50587@gmail.com?subject=Кейс%3A%20Инвестиционная%20презентация" class="cta-button">✍️ Пишите →</a>
       </div>
 
+      <!-- УСЛУГА: ТАПЛИНК -->
       <div id="service-taplink" style="background: #1A1A1A; border-radius: 16px; padding: 32px; margin-bottom: 40px; text-align: center; scroll-margin-top: 80px;">
         <div style="margin-bottom: 24px;"><img src="images/taplink.jpg" alt="Таплинк" style="max-width: 100%; border-radius: 12px;"><p style="font-size: 14px; opacity: 0.7; margin-top: 8px;">Экран таплинка на iPhone</p></div>
         <span class="badge">🧠 УСЛУГА: ТАПЛИНК / ЛЕНДИНГ → +22% к заявкам</span>
@@ -354,6 +376,7 @@
         <a href="mailto:vnik50587@gmail.com?subject=Кейс%3A%20Таплинк%20для%20психолога" class="cta-button">✍️ Пишите →</a>
       </div>
 
+      <!-- УСЛУГА: ОФОРМЛЕНИЕ СОЦСЕТЕЙ -->
       <div id="service-smm" style="background: #1A1A1A; border-radius: 16px; padding: 32px; margin-bottom: 40px; text-align: center; scroll-margin-top: 80px;">
         <div style="margin-bottom: 24px;"><img src="images/avatar-d.jpg" alt="аватарка девушки" style="max-width: 100%; border-radius: 12px;"><p style="font-size: 14px; opacity: 0.7; margin-top: 8px;">Обложка ВК с медальоном</p></div>
         <span class="badge">👑 УСЛУГА: ОФОРМЛЕНИЕ СОЦСЕТЕЙ → +37% сохранений постов</span>
@@ -364,6 +387,7 @@
         <a href="mailto:vnik50587@gmail.com?subject=Кейс%3A%20Оформление%20ВК" class="cta-button">✍️ Пишите →</a>
       </div>
 
+      <!-- УСЛУГА: КОНТЕКСТНАЯ РЕКЛАМА -->
       <div id="service-ads" style="background: #1A1A1A; border-radius: 16px; padding: 32px; margin-bottom: 40px; text-align: center; scroll-margin-top: 80px;">
         <div style="margin-bottom: 24px;"><img src="images/yandex-direct.jpg" alt="Яндекс.Директ + маркетплейс" style="max-width: 100%; border-radius: 12px;"><p style="font-size: 14px; opacity: 0.7; margin-top: 8px;">Настройка рекламы + продвижение на маркетплейсе</p></div>
         <span class="badge">📢 УСЛУГА: КОНТЕКСТНАЯ РЕКЛАМА → +32% заявок, CPL −32%</span>
