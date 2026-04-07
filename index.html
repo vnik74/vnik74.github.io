@@ -274,6 +274,181 @@
     else { btn.style.opacity = '0'; btn.style.visibility = 'hidden'; }
   });
 </script>
+<!-- Форма обратной связи (стилизованная) -->
+<style>
+  .modal-form {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
+  }
 
+  .modal-form-content {
+    background: linear-gradient(135deg, #1A1A1A 0%, #0D0D0D 100%);
+    margin: 8% auto;
+    padding: 32px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 24px;
+    width: 90%;
+    max-width: 500px;
+    color: #FFF;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .close-button {
+    color: #FFD700;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+
+  .close-button:hover {
+    background: rgba(255, 215, 0, 0.2);
+    transform: scale(1.1);
+  }
+
+  .modal-form-content h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    margin-bottom: 24px;
+    color: #FFD700;
+    text-align: center;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #FFD700;
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid #333;
+    background-color: #2A2A2A;
+    color: #FFF;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    transition: all 0.2s;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #FFD700;
+    box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
+  }
+
+  .form-group input:hover,
+  .form-group textarea:hover {
+    border-color: rgba(255, 215, 0, 0.5);
+  }
+
+  .submit-button {
+    background: linear-gradient(135deg, #FFB6C1, #FFD700);
+    color: #1A1A1A;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+  }
+</style>
+
+<!-- HTML-код формы (попап) -->
+<div id="feedbackForm" class="modal-form">
+  <div class="modal-form-content">
+    <span class="close-button">&times;</span>
+    <h3>✉️ Написать сообщение</h3>
+    <form action="https://formsubmit.co/vnik50587@gmail.com" method="POST">
+      <input type="hidden" name="_next" value="https://vnik74.github.io/#cases">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_subject" value="Новое сообщение из портфолио">
+      
+      <div class="form-group">
+        <label for="name">👤 Ваше имя</label>
+        <input type="text" id="name" name="name" placeholder="Как к вам обращаться?" required>
+      </div>
+      <div class="form-group">
+        <label for="email">📧 Ваш Email</label>
+        <input type="email" id="email" name="email" placeholder="для ответа" required>
+      </div>
+      <div class="form-group">
+        <label for="message">💬 Сообщение</label>
+        <textarea id="message" name="message" rows="5" placeholder="Опишите задачу или вопрос..." required></textarea>
+      </div>
+      <button type="submit" class="submit-button">📨 Отправить →</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Получаем элементы
+  const modal = document.getElementById('feedbackForm');
+  const closeBtn = document.getElementsByClassName('close-button')[0];
+  
+  // Находим ВСЕ кнопки "Пишите →" на странице
+  const allButtons = document.querySelectorAll('.cta-button');
+
+  // Функция открытия попапа
+  function openForm(e) {
+    if (e) e.preventDefault();
+    modal.style.display = 'block';
+  }
+
+  // Навешиваем обработчик на каждую кнопку
+  allButtons.forEach(button => {
+    button.addEventListener('click', openForm);
+  });
+
+  // Закрытие по крестику
+  closeBtn.onclick = function() {
+    modal.style.display = 'none';
+  }
+
+  // Закрытие по клику вне окна
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = 'none';
+    }
+  }
+</script>
 </body>
 </html>
