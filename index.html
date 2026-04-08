@@ -8,6 +8,111 @@
   <style>
     *{margin:0;padding:0;box-sizing:border-box}body{background:#121212;font-family:'Inter',sans-serif;scroll-behavior:smooth}.container{max-width:1000px;margin:0 auto}.case-grid{display:flex;flex-direction:column;gap:48px;margin-top:40px}.case-card{background:#1A1A1A;border-radius:24px;overflow:hidden;transition:transform .3s ease,box-shadow .3s ease;box-shadow:0 8px 24px rgba(0,0,0,.3);width:100%;scroll-margin-top:80px}.case-card:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(0,0,0,.4)}.case-content{padding:32px}.images-vertical{display:flex;flex-direction:column;gap:24px;margin-bottom:28px}.image-block{width:100%}.image-label{font-size:14px;font-weight:500;color:#FFD700;margin-bottom:10px;letter-spacing:.3px}.image-placeholder{background:linear-gradient(135deg,#2A2A2A 0,#1A1A1A 100%);border-radius:16px;width:100%;min-height:260px;display:flex;align-items:center;justify-content:center;border:1px solid #333;overflow:hidden}.image-placeholder img{width:100%;height:100%;object-fit:cover;display:block}.badge{background:linear-gradient(90deg,#FFB6C1,#FFD700);color:#1A1A1A;font-weight:600;padding:6px 16px;border-radius:40px;font-size:14px;display:inline-block;margin-bottom:20px;letter-spacing:.5px}h3{font-family:'Montserrat','Inter',sans-serif;font-weight:700;font-size:26px;margin:16px 0 20px;letter-spacing:-.3px}.case-text{font-size:16px;line-height:1.6;margin-bottom:20px;color:#E0E0E0}.case-text strong{color:#FFD700;font-weight:600}.result-stats{background:rgba(255,215,0,.08);border-left:4px solid #FFD700;padding:18px 22px;border-radius:12px;margin:24px 0;font-weight:500}.cta-button{display:inline-flex;align-items:center;gap:10px;background:transparent;border:1.5px solid #FFD700;color:#FFD700;text-decoration:none;font-weight:600;padding:10px 24px;border-radius:40px;font-size:15px;transition:all .3s ease;cursor:pointer}.cta-button:hover{background:rgba(255,215,0,.15);transform:scale(1.02)}.filter-btn{background:#1A1A1A;padding:8px 20px;border-radius:40px;text-decoration:none;color:#FFD700;font-weight:500;border:1px solid #333;transition:all .2s}.filter-btn:hover{background:rgba(255,215,0,.1);transform:translateY(-2px)}@media (max-width:768px){.case-content{padding:24px}h3{font-size:22px}}
   </style>
+  <!-- Стили для попап-формы -->
+  <style>
+    .modal-form {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(4px);
+    }
+    .modal-form-content {
+      background: linear-gradient(135deg, #1A1A1A 0%, #0D0D0D 100%);
+      margin: 8% auto;
+      padding: 32px;
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      border-radius: 24px;
+      width: 90%;
+      max-width: 500px;
+      color: #FFF;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .close-button {
+      color: #FFD700;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+    .close-button:hover {
+      background: rgba(255, 215, 0, 0.2);
+      transform: scale(1.1);
+    }
+    .modal-form-content h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 28px;
+      margin-bottom: 24px;
+      color: #FFD700;
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #FFD700;
+      font-weight: 500;
+      font-size: 14px;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid #333;
+      background-color: #2A2A2A;
+      color: #FFF;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      transition: all 0.2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #FFD700;
+      box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
+    }
+    .form-group input:hover,
+    .form-group textarea:hover {
+      border-color: rgba(255, 215, 0, 0.5);
+    }
+    .submit-button {
+      background: linear-gradient(135deg, #FFB6C1, #FFD700);
+      color: #1A1A1A;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .submit-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+    }
+  </style>
 </head>
 <body>
 
@@ -60,7 +165,7 @@
   </div>
 </section>
 
-<!-- КЕЙСЫ -->
+<!-- СЕКЦИЯ КЕЙСОВ -->
 <section id="cases">
   <div style="background:#121212;color:#FFF;padding:60px 20px">
     <div class="container">
@@ -70,12 +175,15 @@
         <p style="font-size:17px;opacity:.8;max-width:680px;margin:16px auto 0">Не просто «запустить» — а так, чтобы росли продажи, снижалась стоимость привлечения и был понятный результат</p>
       </div>
 
+      <!-- ФИЛЬТРЫ ПО НИШАМ -->
       <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:32px auto 20px">
         <a href="#case-jewelry" class="filter-btn">💎 Украшения</a>
-        <a href="#case-home" class="filter-btn">🏠 Товары для дома</a>
+        <a href="#case-home-towels" class="filter-btn">🏠 Товары для дома</a>
+        <a href="#case-home-pan" class="filter-btn">🍳 Сковороды</a>
         <a href="#case-cosmetics" class="filter-btn">💄 Косметика</a>
         <a href="#case-pillow" class="filter-btn">🛏️ Здоровье</a>
-        <a href="#case-clothing" class="filter-btn">👗 Одежда</a>
+        <a href="#case-clothing-dress" class="filter-btn">👗 Одежда</a>
+        <a href="#case-clothing-fur" class="filter-btn">👘 Шубы</a>
       </div>
 
       <div class="case-grid">
@@ -90,15 +198,14 @@
             <div class="case-text"><strong>🧩 Задача:</strong> Карточка не привлекала внимание и не доводила до покупки.</div>
             <div class="case-text"><strong>🧠 Решение:</strong><br>— 4 обложки с разными сценариями.<br>— 6 экранов внутри карточки.<br>— Крупные планы + съёмка на модели.<br>— Инфографика: материал, вес, гипоаллергенно.</div>
             <div class="result-stats"><strong>📈 Результат:</strong><br>• CTR: +32% &nbsp;&nbsp; • Конверсия: +18% &nbsp;&nbsp; • Глубина: +27%<br>• CPA: −23% &nbsp;&nbsp; • Отказы: −21%</div>
-       <!-- Внутри div id="case-jewelry" -->
-<a href="mailto:vnik50587@gmail.com?subject=Case%3A%20Jewelry%20Request" class="cta-button">✍️ Пишите →</a>
+            <a href="#" class="cta-button" onclick="openForm(); return false;">✍️ Пишите →</a>
           </div>
         </div>
 
-        <!-- Товары для дома -->
-        <div class="case-card" id="case-home">
+        <!-- Товары для дома (полотенца) -->
+        <div class="case-card" id="case-home-towels">
           <div class="case-content">
-            <span class="badge">🏠 НИША: ТОВАРЫ ДЛЯ ДОМА → +28% выручки / −19% CPA</span>
+            <span class="badge">🏠 НИША: ТОВАРЫ ДЛЯ ДОМА (полотенца) → +28% выручки / −19% CPA</span>
             <div class="images-vertical">
               <div class="image-block"><div class="image-label">Обложка</div><div class="image-placeholder"><img src="https://vnik74.github.io/images/cover-set_of_ towels.png" alt="Полотенца"></div></div>
               <div class="image-block"><div class="image-label">Характеристики</div><div class="image-placeholder"><img src="https://vnik74.github.io/images/Description_of _he towel_set.png" alt="Описание"></div></div>
@@ -106,24 +213,25 @@
             <div class="case-text"><strong>🧩 Задача:</strong> Карточки терялись среди конкурентов.</div>
             <div class="case-text"><strong>🧠 Решение:</strong><br>— Единый стиль (уют, функциональность).<br>— Воронка: общий вид → детали → интерьер → преимущества.</div>
             <div class="result-stats"><strong>📈 Результат:</strong><br>• Выручка: +28% &nbsp;&nbsp; • CTR: +35% &nbsp;&nbsp; • CPC: −19%<br>• Конверсия в корзину: +22%</div>
-            <a href="mailto:vnik50587@gmail.com?subject=Case%3A%20Home%20Goods" class="cta-button">✍️ Пишите →</a>
+            <a href="#" class="cta-button" onclick="openForm(); return false;">✍️ Пишите →</a>
           </div>
         </div>
 
-        <!-- Сковорода с антипригарным покрытием (Товары для дома) -->
-<div class="case-card" id="case-home">
-  <div class="case-content">
-    <span class="badge">🍳 НИША: ТОВАРЫ ДЛЯ ДОМА (сковорода) → +15% CTR / −12% отказов</span>
-    <div class="images-vertical">
-      <div class="image-block"><div class="image-label">Обложка</div><div class="image-placeholder"><img src="https://vnik74.github.io/images/skovoroda-antiprigarnoe-pokrytie-1.png" alt="Сковорода с антипригарным покрытием"></div></div>
-      <div class="image-block"><div class="image-label">Характеристики</div><div class="image-placeholder"><img src="https://vnik74.github.io/images/skovoroda-antiprigarnoe-pokrytie-harakteristiki-2.png" alt="Описание характеристик"></div></div>
-    </div>
-    <div class="case-text"><strong>🧩 Задача:</strong> Карточка сковороды терялась среди конкурентов — покупатели не видели качество антипригарного покрытия и равномерный нагрев.</div>
-    <div class="case-text"><strong>🧠 Решение:</strong><br>— Сделал акцент на «лёгкий уход» и «без царапин».<br>— Блоки: литой алюминий → антипригарное покрытие → совместимость с плитами → уход.<br>— Инфографика для быстрого считывания преимуществ.</div>
-    <div class="result-stats"><strong>📈 Результат:</strong><br>• CTR: +15% &nbsp;&nbsp; • Отказы: −12% &nbsp;&nbsp; • Конверсия в корзину: +9%</div>
-    <a href="mailto:vnik50587@gmail.com?subject=Case%3A%20Non-stick%20Pan" class="cta-button">✍️ Пишите →</a>
-  </div>
-</div>
+        <!-- Сковорода -->
+        <div class="case-card" id="case-home-pan">
+          <div class="case-content">
+            <span class="badge">🍳 НИША: ТОВАРЫ ДЛЯ ДОМА (сковорода) → +15% CTR / −12% отказов</span>
+            <div class="images-vertical">
+              <div class="image-block"><div class="image-label">Обложка</div><div class="image-placeholder"><img src="https://vnik74.github.io/images/skovoroda-antiprigarnoe-pokrytie-1.png" alt="Сковорода"></div></div>
+              <div class="image-block"><div class="image-label">Характеристики</div><div class="image-placeholder"><img src="https://vnik74.github.io/images/skovoroda-antiprigarnoe-pokrytie-harakteristiki-2.png" alt="Описание"></div></div>
+            </div>
+            <div class="case-text"><strong>🧩 Задача:</strong> Карточка сковороды терялась среди конкурентов — покупатели не видели качество антипригарного покрытия и равномерный нагрев.</div>
+            <div class="case-text"><strong>🧠 Решение:</strong><br>— Сделал акцент на «лёгкий уход» и «без царапин».<br>— Блоки: литой алюминий → антипригарное покрытие → совместимость с плитами → уход.<br>— Инфографика для быстрого считывания преимуществ.</div>
+            <div class="result-stats"><strong>📈 Результат:</strong><br>• CTR: +15% &nbsp;&nbsp; • Отказы: −12% &nbsp;&nbsp; • Конверсия в корзину: +9%</div>
+            <a href="#" class="cta-button" onclick="openForm(); return false;">✍️ Пишите →</a>
+          </div>
+        </div>
+
         <!-- Косметика -->
         <div class="case-card" id="case-cosmetics">
           <div class="case-content">
@@ -135,7 +243,7 @@
             <div class="case-text"><strong>🧩 Задача:</strong> Карточки не вызывали доверия.</div>
             <div class="case-text"><strong>🧠 Решение:</strong><br>— Акцент на «до/после».<br>— Блоки: состав → нанесение → эффект → безопасность.</div>
             <div class="result-stats"><strong>📈 Результат:</strong><br>• Конверсия: +41% &nbsp;&nbsp; • Отказы: −25% &nbsp;&nbsp; • Средний чек: +12%</div>
-            <a href="mailto:vnik50587@gmail.com?subject=Case%3A%20Cosmetics" class="cta-button">✍️ Пишите →</a>
+            <a href="#" class="cta-button" onclick="openForm(); return false;">✍️ Пишите →</a>
           </div>
         </div>
 
@@ -150,12 +258,12 @@
             <div class="case-text"><strong>🧩 Задача:</strong> Карточка подушки терялась среди конкурентов.</div>
             <div class="case-text"><strong>🧠 Решение:</strong><br>— Обложка: комфорт и правильное положение шеи.<br>— Воронка: форма → материалы → положение во сне → преимущества.</div>
             <div class="result-stats"><strong>📈 Результат:</strong><br>• Выручка: +28% &nbsp;&nbsp; • CTR: +35% &nbsp;&nbsp; • CPC: −19%</div>
-            <a href="mailto:vnik50587@gmail.com?subject=Case%3A%20Orthopedic%20Pillow" class="cta-button">✍️ Пишите →</a>
+            <a href="#" class="cta-button" onclick="openForm(); return false;">✍️ Пишите →</a>
           </div>
         </div>
 
         <!-- Платье -->
-        <div class="case-card" id="case-clothing">
+        <div class="case-card" id="case-clothing-dress">
           <div class="case-content">
             <span class="badge">👗 НИША: ЖЕНСКАЯ ОДЕЖДА (льняное платье) → +32% CTR / +21% конверсии</span>
             <div class="images-vertical">
@@ -165,54 +273,36 @@
             <div class="case-text"><strong>🧩 Задача:</strong> Карточка платья терялась среди тысяч других.</div>
             <div class="case-text"><strong>🧠 Решение:</strong><br>— Обложка: натуральность и лёгкость.<br>— Воронка: ткань → посадка → аксессуары → уход.</div>
             <div class="result-stats"><strong>📈 Результат:</strong><br>• CTR: +32% &nbsp;&nbsp; • Конверсия: +21% &nbsp;&nbsp; • Время просмотра: +25 сек</div>
-            <a href="mailto:vnik50587@gmail.com?subject=Case%3A%20Linen%20Dress" class="cta-button">✍️ Пишите →</a>
+            <a href="#" class="cta-button" onclick="openForm(); return false;">✍️ Пишите →</a>
+          </div>
+        </div>
+
+        <!-- Шуба -->
+        <div class="case-card" id="case-clothing-fur">
+          <div class="case-content">
+            <span class="badge">👘 НИША: ЖЕНСКАЯ ОДЕЖДА (шуба) → +38% CTR / +24% конверсии</span>
+            <div class="images-vertical">
+              <div class="image-block"><div class="image-label">Обложка (слайдер из 5 кадров)</div><div class="image-placeholder"><img src="https://vnik74.github.io/images/Shuba-naturalnyj-mekh.png" alt="Шуба"></div></div>
+              <div class="image-block"><div class="image-label">Характеристики продукта (воронка из 7 слайдов)</div><div class="image-placeholder"><img src="https://vnik74.github.io/images/Shuba-naturalnyj-mekh-harakteristiki.png" alt="Воронка"></div></div>
+            </div>
+            <div class="case-text"><strong>🧩 Задача:</strong> Карточка шубы терялась среди тысяч других. Слабые обложки, не показано качество меха, нет доверия к материалу.</div>
+            <div class="case-text"><strong>🧠 Решение:</strong><br>— Обложка (5 слайдов): общий вид → крупный план меха → вид сбоку → детали → вид со спины.<br>— Воронка (7 слайдов): натуральный мех → подкладка и фурнитура → цветовая палитра → тепло и комфорт → карманы и манжеты → длина → призыв к заказу.<br>— Все тексты — в плашках.</div>
+            <div class="result-stats"><strong>📈 Результат:</strong><br>• CTR: +38% &nbsp;&nbsp; • Конверсия: +24% &nbsp;&nbsp; • Время просмотра: +32 сек<br>• Снижение возвратов: −15% (благодаря детальным фото)</div>
+            <a href="#" class="cta-button" onclick="openForm(); return false;">✍️ Пишите →</a>
           </div>
         </div>
       </div>
-<!-- Шуба -->
-<div class="case-card" id="case-fur-coat">
-  <div class="case-content">
-    <span class="badge">👗 НИША: ЖЕНСКАЯ ОДЕЖДА (шуба) → +38% CTR / +24% конверсии</span>
-    <div class="images-vertical">
-      <div class="image-block">
-        <div class="image-label">Обложка (слайдер из 5 кадров)</div>
-        <div class="image-placeholder">
-          <img src="https://vnik74.github.io/images/Shuba-naturalnyj-mekh.png" alt="Шуба обложка" style="max-width: 100%; border-radius: 12px;">
-        </div>
-      </div>
-      <div class="image-block">
-        <div class="image-label">Характеристики продукта (воронка из 7 слайдов)</div>
-        <div class="image-placeholder">
-          <img src="https://vnik74.github.io/images/Shuba-naturalnyj-mekh-harakteristiki.png" alt="Шуба характеристики" style="max-width: 100%; border-radius: 12px;">
-        </div>
+
+      <!-- Финальный блок -->
+      <div style="background:linear-gradient(135deg,#FFB6C1 0,#FFD700 100%);color:#1A1A1A;border-radius:28px;padding:36px;margin-top:60px;text-align:center">
+        <h3 style="font-size:28px;margin-bottom:16px;font-weight:800">Ты тоже хочешь такие результаты?</h3>
+        <p style="font-size:18px;margin-bottom:12px;max-width:600px;margin-left:auto;margin-right:auto;font-weight:500">Разберу твои карточки, найду слабые места<br>и предложу решение, которое реально увеличит продажи.</p>
+        <p style="font-size:15px;margin-bottom:32px;opacity:.8">📌 Работаю с Wildberries и Ozon. Вдумчиво, без спешки, с результатом.</p>
+        <button onclick="openForm(); return false;" style="background:#1A1A1A;color:#FFF;padding:14px 32px;border-radius:50px;text-decoration:none;font-weight:600;display:inline-block;font-size:16px;border:none;cursor:pointer;">Напиши — обсудим →</button>
       </div>
     </div>
-    <div class="case-text">
-      <strong>🧩 Задача:</strong> Карточка шубы терялась среди тысяч других. Слабые обложки, не показано качество меха, нет доверия к материалу.
-    </div>
-    <div class="case-text">
-      <strong>🧠 Решение:</strong><br>
-      — Обложка (5 слайдов): общий вид → крупный план меха → вид сбоку → детали → вид со спины.<br>
-      — Воронка (7 слайдов): натуральный мех → подкладка и фурнитура → цветовая палитра → тепло и комфорт → карманы и манжеты → длина → призыв к заказу.<br>
-      — Все тексты — в плашках, шрифты Playfair Display и Montserrat.
-    </div>
-    <div class="result-stats">
-      <strong>📈 Результат:</strong><br>
-      • CTR: +38% &nbsp;&nbsp; • Конверсия: +24% &nbsp;&nbsp; • Время просмотра: +32 сек<br>
-      • Снижение возвратов: −15% (благодаря детальным фото)
-    </div>
-    <a href="mailto:vnik50587@gmail.com?subject=Кейс%3A%20Шуба%20из%20натурального%20меха" class="cta-button">
-      ✍️ Пишите →
-    </a>
   </div>
-</div>
-   <!-- Финальный блок внутри кейсов -->
-<div style="background:linear-gradient(135deg,#FFB6C1 0,#FFD700 100%);color:#1A1A1A;border-radius:28px;padding:36px;margin-top:60px;text-align:center">
-  <h3 style="font-size:28px;margin-bottom:16px;font-weight:800">Ты тоже хочешь такие результаты?</h3>
-  <p style="font-size:18px;margin-bottom:12px;max-width:600px;margin-left:auto;margin-right:auto;font-weight:500">Разберу твои карточки, найду слабые места<br>и предложу решение, которое реально увеличит продажи.</p>
-  <p style="font-size:15px;margin-bottom:32px;opacity:.8">📌 Работаю с Wildberries и Ozon. Вдумчиво, без спешки, с результатом.</p>
-  <button onclick="openForm(); return false;" style="background:#1A1A1A;color:#FFF;padding:14px 32px;border-radius:50px;text-decoration:none;font-weight:600;display:inline-block;font-size:16px;border:none;cursor:pointer;">Напиши — обсудим →</button>
-</div>
+</section>
 
 <!-- УСЛУГИ -->
 <section id="services">
@@ -231,6 +321,7 @@
         <a href="#service-ads" class="filter-btn">📢 Контекстная реклама</a>
       </div>
 
+      <!-- Презентация -->
       <div id="service-presentation" style="background:#1A1A1A;border-radius:16px;padding:32px;margin-bottom:40px;text-align:center;scroll-margin-top:80px">
         <div style="margin-bottom:24px"><img src="images/investments.jpg" style="max-width:100%;border-radius:12px"><p style="font-size:14px;opacity:.7;margin-top:8px">Финальный вид презентации</p></div>
         <span class="badge">📊 УСЛУГА: ИНВЕСТИЦИОННАЯ ПРЕЗЕНТАЦИЯ → +43% к конверсии</span>
@@ -238,9 +329,10 @@
         <div class="case-text" style="text-align:left"><strong>🧩 Задача:</strong> Презентация «потерялась» у инвесторов.</div>
         <div class="case-text" style="text-align:left"><strong>🧠 Решение:</strong> Переделал в стиле «роскошного минимализма» с розово-золотыми акцентами.</div>
         <div class="result-stats" style="text-align:left"><strong>📈 Результат:</strong> +43% к конверсии в инвестиции за 2 недели. Получил 3 новых инвестора.</div>
-        <a href="mailto:vnik50587@gmail.com?subject=Case%3A%20Investment%20Presentation" class="cta-button">✍️ Пишите →</a>
+        <a href="#" class="cta-button" onclick="openForm(); return false;">✍️ Пишите →</a>
       </div>
 
+      <!-- Таплинк -->
       <div id="service-taplink" style="background:#1A1A1A;border-radius:16px;padding:32px;margin-bottom:40px;text-align:center;scroll-margin-top:80px">
         <div style="margin-bottom:24px"><img src="images/taplink.jpg" style="max-width:100%;border-radius:12px"><p style="font-size:14px;opacity:.7;margin-top:8px">Экран таплинка на iPhone</p></div>
         <span class="badge">🧠 УСЛУГА: ТАПЛИНК / ЛЕНДИНГ → +22% к заявкам</span>
@@ -248,9 +340,10 @@
         <div class="case-text" style="text-align:left"><strong>🧩 Задача:</strong> 60% клиентов уходили с таплинка.</div>
         <div class="case-text" style="text-align:left"><strong>🧠 Решение:</strong> Создал таплинк в стиле «минимализм + эмпатия».</div>
         <div class="result-stats" style="text-align:left"><strong>📈 Результат:</strong> +22% к заявкам. Среднее время на странице — с 12 до 38 секунд.</div>
-        <a href="mailto:vnik50587@gmail.com?subject=Case%3A%20Taplink%20Psychologist" class="cta-button">✍️ Пишите →</a>
+        <a href="#" class="cta-button" onclick="openForm(); return false;">✍️ Пишите →</a>
       </div>
 
+      <!-- Оформление соцсетей -->
       <div id="service-smm" style="background:#1A1A1A;border-radius:16px;padding:32px;margin-bottom:40px;text-align:center;scroll-margin-top:80px">
         <div style="margin-bottom:24px"><img src="images/avatar-d.jpg" style="max-width:100%;border-radius:12px"><p style="font-size:14px;opacity:.7;margin-top:8px">Обложка ВК с медальоном</p></div>
         <span class="badge">👑 УСЛУГА: ОФОРМЛЕНИЕ СОЦСЕТЕЙ → +37% сохранений постов</span>
@@ -258,9 +351,10 @@
         <div class="case-text" style="text-align:left"><strong>🧩 Задача:</strong> Эксперт не выделялась в ленте.</div>
         <div class="case-text" style="text-align:left"><strong>🧠 Решение:</strong> Разработал бренд-стиль «женственный шик».</div>
         <div class="result-stats" style="text-align:left"><strong>📈 Результат:</strong> +37% сохранений постов, +15% роста подписчиков за месяц.</div>
-        <a href="mailto:vnik50587@gmail.com?subject=Case%3A%20VK%20Design" class="cta-button">✍️ Пишите →</a>
+        <a href="#" class="cta-button" onclick="openForm(); return false;">✍️ Пишите →</a>
       </div>
 
+      <!-- Контекстная реклама -->
       <div id="service-ads" style="background:#1A1A1A;border-radius:16px;padding:32px;margin-bottom:40px;text-align:center;scroll-margin-top:80px">
         <div style="margin-bottom:24px"><img src="images/yandex-direct.jpg" style="max-width:100%;border-radius:12px"><p style="font-size:14px;opacity:.7;margin-top:8px">Настройка рекламы + продвижение на маркетплейсе</p></div>
         <span class="badge">📢 УСЛУГА: КОНТЕКСТНАЯ РЕКЛАМА → +32% заявок, CPL −32%</span>
@@ -268,7 +362,7 @@
         <div class="case-text" style="text-align:left"><strong>🧩 Задача:</strong> Продажи на маркетплейсе были нестабильны.</div>
         <div class="case-text" style="text-align:left"><strong>🧠 Решение:</strong> Настройка Яндекс.Директа, создание баннеров в Figma, оптимизация карточек.</div>
         <div class="result-stats" style="text-align:left"><strong>📈 Результат за 5 недель:</strong><br>— CPL: с 1800 ₽ до 1220 ₽ (−32%)<br>— Заказы: +50%<br>— CTR: с 1,8% до 2,7%</div>
-        <a href="mailto:vnik50587@gmail.com?subject=Case%3A%20Yandex%20Direct" class="cta-button">✍️ Пишите →</a>
+        <a href="#" class="cta-button" onclick="openForm(); return false;">✍️ Пишите →</a>
       </div>
     </div>
   </div>
@@ -303,146 +397,7 @@
   </div>
 </section>
 
-<footer>
-  <div style="background:#0D0D0D;color:#FFF;padding:50px 20px 30px;border-top:1px solid #222;position:relative">
-    <div id="toTopBtn" style="position:fixed;bottom:30px;right:30px;z-index:100;opacity:0;visibility:hidden;transition:all .3s ease">
-      <a href="#hero" style="display:flex;align-items:center;justify-content:center;width:48px;height:48px;background:linear-gradient(135deg,#FFB6C1,#FFD700);border-radius:50%;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.3)"><span style="font-size:28px;color:#1A1A1A;font-weight:bold">↑</span></a>
-    </div>
-    <div style="max-width:1000px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:flex-start;gap:30px">
-      <div style="flex:0 0 200px;text-align:center"><img src="images/avatar-circle.jpg" alt="Николай Вирко" style="width:200px;height:200px;border-radius:50%;object-fit:cover;border:3px solid #FFD700"></div>
-      <div style="flex:1;min-width:250px"><div style="font-size:28px;font-weight:700;margin-bottom:10px">Николай Вирко</div><div style="font-size:18px;color:#B0B0B0;margin-bottom:20px">Трафик-менеджер маркетплейсов | Специалист по контекстной рекламе</div><p style="font-size:18px;margin-bottom:24px">Хотите получить бесплатный аудит вашей рекламы или карточки товара — напишите в VK.</p><a href="https://vk.com/nikvirko" target="_blank" rel="noopener noreferrer" style="background:linear-gradient(135deg,#FFB6C1,#FFD700);color:#1A1A1A;font-weight:700;padding:12px 28px;border-radius:8px;text-decoration:none;display:inline-block">Написать в VK</a></div>
-      <div style="flex:0 0 220px;text-align:right;font-size:16px;line-height:2.2"><div>✉️ <a href="#" onclick="openForm(); return false;" style="color:#FFD700;text-decoration:none">vnik50587@gmail.com</a></div><div>📄 <a href="https://chelyabinsk.hh.ru/resume/934112feff0fab95a20039ed1f676e7a554856" target="_blank" rel="noopener noreferrer" style="color:#FFD700;text-decoration:none">Резюме на hh.ru</a></div><div style="font-size:13px;color:#808080;margin-top:16px">🔒 Конфиденциально. Без спама.</div></div>
-    </div>
-    <div style="max-width:1000px;margin:40px auto 0;padding-top:24px;border-top:1px solid #222;text-align:center"><p style="font-size:14px;color:#808080">© 2026 Николай Вирко | Трафик-менеджер маркетплейсов | Специалист по контекстной рекламе | Нейросети | Figma</p><div style="margin-top:16px;display:flex;flex-wrap:wrap;justify-content:center;gap:24px;font-size:14px"><a href="#about" style="color:#808080;text-decoration:none">Обо мне</a><a href="#cases" style="color:#808080;text-decoration:none">Кейсы</a><a href="#services" style="color:#808080;text-decoration:none">Услуги</a><a href="#for-whom" style="color:#808080;text-decoration:none">Для кого</a><a href="#tools" style="color:#808080;text-decoration:none">Инструменты</a></div></div>
-  </div>
-</footer>
-
-<script>
-  window.addEventListener('scroll', function() {
-    var btn = document.getElementById('toTopBtn');
-    if (window.scrollY > 300) { btn.style.opacity = '1'; btn.style.visibility = 'visible'; }
-    else { btn.style.opacity = '0'; btn.style.visibility = 'hidden'; }
-  });
-</script>
-<!-- Форма обратной связи (стилизованная) -->
-<style>
-  .modal-form {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(4px);
-  }
-
-  .modal-form-content {
-    background: linear-gradient(135deg, #1A1A1A 0%, #0D0D0D 100%);
-    margin: 8% auto;
-    padding: 32px;
-    border: 1px solid rgba(255, 215, 0, 0.3);
-    border-radius: 24px;
-    width: 90%;
-    max-width: 500px;
-    color: #FFF;
-    position: relative;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-    animation: fadeIn 0.3s ease;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .close-button {
-    color: #FFD700;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.2s;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-  }
-
-  .close-button:hover {
-    background: rgba(255, 215, 0, 0.2);
-    transform: scale(1.1);
-  }
-
-  .modal-form-content h3 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 28px;
-    margin-bottom: 24px;
-    color: #FFD700;
-    text-align: center;
-  }
-
-  .form-group {
-    margin-bottom: 20px;
-  }
-
-  .form-group label {
-    display: block;
-    margin-bottom: 8px;
-    color: #FFD700;
-    font-weight: 500;
-    font-size: 14px;
-  }
-
-  .form-group input,
-  .form-group textarea {
-    width: 100%;
-    padding: 12px 16px;
-    border-radius: 12px;
-    border: 1px solid #333;
-    background-color: #2A2A2A;
-    color: #FFF;
-    font-family: 'Inter', sans-serif;
-    font-size: 15px;
-    transition: all 0.2s;
-  }
-
-  .form-group input:focus,
-  .form-group textarea:focus {
-    outline: none;
-    border-color: #FFD700;
-    box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
-  }
-
-  .form-group input:hover,
-  .form-group textarea:hover {
-    border-color: rgba(255, 215, 0, 0.5);
-  }
-
-  .submit-button {
-    background: linear-gradient(135deg, #FFB6C1, #FFD700);
-    color: #1A1A1A;
-    border: none;
-    padding: 14px 28px;
-    border-radius: 40px;
-    font-weight: 700;
-    font-size: 16px;
-    cursor: pointer;
-    width: 100%;
-    transition: all 0.2s;
-    font-family: 'Inter', sans-serif;
-  }
-
-  .submit-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
-  }
-</style>
-
-<!-- HTML-код формы (попап) -->
+<!-- ПОПАП-ФОРМА -->
 <div id="feedbackForm" class="modal-form">
   <div class="modal-form-content">
     <span class="close-button">&times;</span>
@@ -451,7 +406,6 @@
       <input type="hidden" name="_next" value="https://vnik74.github.io/#cases">
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_subject" value="Новое сообщение из портфолио">
-      
       <div class="form-group">
         <label for="name">👤 Ваше имя</label>
         <input type="text" id="name" name="name" placeholder="Как к вам обращаться?" required>
@@ -469,36 +423,53 @@
   </div>
 </div>
 
+<footer>
+  <div style="background:#0D0D0D;color:#FFF;padding:50px 20px 30px;border-top:1px solid #222;position:relative">
+    <div id="toTopBtn" style="position:fixed;bottom:30px;right:30px;z-index:100;opacity:0;visibility:hidden;transition:all .3s ease">
+      <a href="#hero" style="display:flex;align-items:center;justify-content:center;width:48px;height:48px;background:linear-gradient(135deg,#FFB6C1,#FFD700);border-radius:50%;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.3)"><span style="font-size:28px;color:#1A1A1A;font-weight:bold">↑</span></a>
+    </div>
+    <div style="max-width:1000px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:flex-start;gap:30px">
+      <div style="flex:0 0 200px;text-align:center"><img src="images/avatar-circle.jpg" alt="Николай Вирко" style="width:200px;height:200px;border-radius:50%;object-fit:cover;border:3px solid #FFD700"></div>
+      <div style="flex:1;min-width:250px"><div style="font-size:28px;font-weight:700;margin-bottom:10px">Николай Вирко</div><div style="font-size:18px;color:#B0B0B0;margin-bottom:20px">Трафик-менеджер маркетплейсов | Специалист по контекстной рекламе</div><p style="font-size:18px;margin-bottom:24px">Хотите получить бесплатный аудит вашей рекламы или карточки товара — напишите в VK.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center">
+          <a href="https://vk.com/nikvirko" target="_blank" rel="noopener noreferrer" style="background:linear-gradient(135deg,#FFB6C1,#FFD700);color:#1A1A1A;font-weight:700;padding:12px 28px;border-radius:8px;text-decoration:none;display:inline-block">Написать в VK</a>
+          <a href="https://chelyabinsk.hh.ru/resume/934112feff0fab95a20039ed1f676e7a554856" target="_blank" rel="noopener noreferrer" style="color:#FFD700;text-decoration:underline">📄 Резюме на hh.ru</a>
+        </div>
+      </div>
+      <div style="flex:0 0 220px;text-align:right;font-size:16px;line-height:2.2">
+        <div>✉️ <a href="#" onclick="openForm(); return false;" style="color:#FFD700;text-decoration:none">vnik50587@gmail.com</a></div>
+        <div style="font-size:13px;color:#808080;margin-top:16px">🔒 Конфиденциально. Без спама.</div>
+      </div>
+    </div>
+    <div style="max-width:1000px;margin:40px auto 0;padding-top:24px;border-top:1px solid #222;text-align:center"><p style="font-size:14px;color:#808080">© 2026 Николай Вирко | Трафик-менеджер маркетплейсов | Специалист по контекстной рекламе | Нейросети | Figma</p><div style="margin-top:16px;display:flex;flex-wrap:wrap;justify-content:center;gap:24px;font-size:14px"><a href="#about" style="color:#808080;text-decoration:none">Обо мне</a><a href="#cases" style="color:#808080;text-decoration:none">Кейсы</a><a href="#services" style="color:#808080;text-decoration:none">Услуги</a><a href="#for-whom" style="color:#808080;text-decoration:none">Для кого</a><a href="#tools" style="color:#808080;text-decoration:none">Инструменты</a></div></div>
+  </div>
+</footer>
+
 <script>
-  // Получаем элементы
-  const modal = document.getElementById('feedbackForm');
-  const closeBtn = document.getElementsByClassName('close-button')[0];
-  
-  // Находим ВСЕ кнопки "Пишите →" на странице
-  const allButtons = document.querySelectorAll('.cta-button');
-
-  // Функция открытия попапа
-  function openForm(e) {
-    if (e) e.preventDefault();
-    modal.style.display = 'block';
-  }
-
-  // Навешиваем обработчик на каждую кнопку
-  allButtons.forEach(button => {
-    button.addEventListener('click', openForm);
+  window.addEventListener('scroll', function() {
+    var btn = document.getElementById('toTopBtn');
+    if (window.scrollY > 300) { btn.style.opacity = '1'; btn.style.visibility = 'visible'; }
+    else { btn.style.opacity = '0'; btn.style.visibility = 'hidden'; }
   });
-
-  // Закрытие по крестику
-  closeBtn.onclick = function() {
-    modal.style.display = 'none';
+  // Функция открытия попапа (глобальная)
+  window.openForm = function() {
+    var modal = document.getElementById('feedbackForm');
+    if (modal) modal.style.display = 'block';
+  };
+  // Закрытие попапа
+  var closeBtn = document.getElementsByClassName('close-button')[0];
+  if (closeBtn) {
+    closeBtn.onclick = function() {
+      document.getElementById('feedbackForm').style.display = 'none';
+    };
   }
-
-  // Закрытие по клику вне окна
   window.onclick = function(event) {
+    var modal = document.getElementById('feedbackForm');
     if (event.target == modal) {
       modal.style.display = 'none';
     }
-  }
+  };
 </script>
+
 </body>
 </html>
