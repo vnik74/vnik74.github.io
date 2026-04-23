@@ -466,31 +466,7 @@
   </div>
 </footer>
 
-<script>
-  window.addEventListener('scroll', function() {
-    var btn = document.getElementById('toTopBtn');
-    if (window.scrollY > 300) { btn.style.opacity = '1'; btn.style.visibility = 'visible'; }
-    else { btn.style.opacity = '0'; btn.style.visibility = 'hidden'; }
-  });
-  // Функция открытия попапа (глобальная)
-  window.openForm = function() {
-    var modal = document.getElementById('feedbackForm');
-    if (modal) modal.style.display = 'block';
-  };
-  // Закрытие попапа
-  var closeBtn = document.getElementsByClassName('close-button')[0];
-  if (closeBtn) {
-    closeBtn.onclick = function() {
-      document.getElementById('feedbackForm').style.display = 'none';
-    };
-  }
-  window.onclick = function(event) {
-    var modal = document.getElementById('feedbackForm');
-    if (event.target == modal) {
-      modal.style.display = 'none';
-    }
-  };
-</script>
+
 
   <script>
   window.mindpalConfig = {
