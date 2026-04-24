@@ -474,13 +474,16 @@
       anchor: "right"
     },
     behavior: {
-      minimizedByDefault: false,
-      showInitialMessageBubbleWhenMinimized: true,
-      keepHeaderVisible: true
+      minimizedByDefault: true,                     // стартуем компактно
+      showInitialMessageBubbleWhenMinimized: true,  // пузырёк "нажмите, чтобы начать"
+      keepHeaderVisible: true,                      // имя и описание не исчезают
+      showCloseButton: true,                        // крестик всегда виден
+      closeButtonTooltip: "Закрыть чат"             // подсказка при наведении
     }
   };
 </script>
 <script src="https://chatbot.getmindpal.com/embed.min.js"></script>
+
 
 </body>
 </html>
