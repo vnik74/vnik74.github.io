@@ -112,6 +112,26 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
     }
+
+    /* Увеличение аватара MindPal */
+.mindpal-launcher img {
+  width: 110px !important;
+  height: 110px !important;
+}
+
+/* Убираем fade-in, задержки и анимации */
+.mindpal-launcher,
+.mindpal-launcher img {
+  transition: none !important;
+  animation: none !important;
+  opacity: 1 !important;
+}
+
+/* Убираем "медленное появление" контейнера */
+.mindpal-launcher {
+  transform: none !important;
+}
+
   </style>
 </head>
 <body>
