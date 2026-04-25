@@ -466,106 +466,73 @@
   </div>
 </footer>
   
-<!-- MindPal Assistant -->
-<style>
-  /* Контейнер свернутого виджета: выравнивание аватара и текста */
-  .mindpal-launcher {
-    display: flex !important;
-    align-items: center !important;
-    gap: 10px !important;
-    padding: 10px 14px !important;
-  }
+<!-- MindPal Assistant (исправленный, рабочий) -->
+  <script>
+    window.mindpalConfig = {
+      chatbotId: "-oce",
 
-  /* Аватар — лёгкая пульсация */
-  .mindpal-launcher-avatar {
-    width: 48px !important;
-    height: 48px !important;
-    border-radius: 50% !important;
-    animation: pulse 2.5s infinite;
-  }
+      display: {
+        type: "floating-corner",
+        anchor: "right"
+      },
 
-  @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.07); }
-    100% { transform: scale(1); }
-  }
+      behavior: {
+        minimizedByDefault: true,
+        showInitialMessageBubbleWhenMinimized: true,
+        keepHeaderVisible: true,
+        showCloseButton: true,
+        closeButtonTooltip: "Закрыть чат",
+        autoFocusInput: true,
 
-  /* Текст рядом с аватаром */
-  .mindpal-launcher-header {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    line-height: 1.2 !important;
-  }
+        /* ВАЖНО: отключаем скрытое автосворачивание */
+        disableAutoMinimize: true
+      },
 
-  .mindpal-launcher-title {
-    font-size: 15px !important;
-    font-weight: 600 !important;
-    margin: 0 !important;
-  }
+      /* Стили, которые реально работают внутри Shadow DOM */
+      injectStyles: `
+        .launcher-container {
+          display: flex !important;
+          align-items: center !important;
+          gap: 10px !important;
+          padding: 10px 14px !important;
+        }
 
-  .mindpal-launcher-subtitle {
-    font-size: 13px !important;
-    opacity: 0.8 !important;
-    margin: 0 !important;
-  }
+        .launcher-avatar {
+          width: 48px !important;
+          height: 48px !important;
+          border-radius: 50% !important;
+          animation: pulse 2.5s infinite;
+        }
 
-  /* Пузырёк "нажмите, чтобы начать" */
-  .mindpal-launcher-bubble {
-    animation: fadeIn 0.8s ease-out;
-  }
+        @keyframes pulse {
+          0% { transform: scale(1); }
+          50% { transform: scale(1.07); }
+          100% { transform: scale(1); }
+        }
 
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(6px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+        .launcher-title {
+          font-size: 15px !important;
+          font-weight: 600 !important;
+        }
 
-  /* Мягкое исчезновение чата */
-  .mindpal-chat-window.closing {
-    animation: fadeOut 0.25s ease-in forwards;
-  }
+        .launcher-subtitle {
+          font-size: 13px !important;
+          opacity: 0.8 !important;
+        }
 
-  @keyframes fadeOut {
-    from { opacity: 1; transform: scale(1); }
-    to { opacity: 0; transform: scale(0.97); }
-  }
+        .launcher-bubble {
+          animation: fadeIn 0.8s ease-out;
+        }
 
-  /* Подсказка "Закрыть чат" */
-  .mindpal-close-button:hover::after {
-    content: "Закрыть чат";
-    position: absolute;
-    right: 40px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: #000;
-    color: #fff;
-    padding: 4px 8px;
-    border-radius: 6px;
-    font-size: 12px;
-    opacity: 0.85;
-    white-space: nowrap;
-    pointer-events: none;
-  }
-</style>
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(6px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `
+    };
+  </script>
 
-<script>
-  window.mindpalConfig = {
-    chatbotId: "-oce",
-    display: {
-      type: "floating-corner",
-      anchor: "right"
-    },
-    behavior: {
-      minimizedByDefault: true,                     // стартуем компактно
-      showInitialMessageBubbleWhenMinimized: true,  // пузырёк "нажмите, чтобы начать"
-      keepHeaderVisible: true,                      // имя и описание всегда видны
-      showCloseButton: true,                        // крестик всегда виден
-      closeButtonTooltip: "Закрыть чат",            // подсказка
-      autoFocusInput: true                          // курсор сразу в поле ввода
-    }
-  };
-</script>
-<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
+  <script src="https://chatbot.getmindpal.com/embed.min.js"></script>
 
 
 
