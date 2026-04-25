@@ -466,73 +466,20 @@
   </div>
 </footer>
   
-<!-- MindPal Assistant (исправленный, рабочий) -->
-  <script>
-    window.mindpalConfig = {
-      chatbotId: "-oce",
-
-      display: {
-        type: "floating-corner",
-        anchor: "right"
-      },
-
-      behavior: {
-        minimizedByDefault: true,
-        showInitialMessageBubbleWhenMinimized: true,
-        keepHeaderVisible: true,
-        showCloseButton: true,
-        closeButtonTooltip: "Закрыть чат",
-        autoFocusInput: true,
-
-        /* ВАЖНО: отключаем скрытое автосворачивание */
-        disableAutoMinimize: true
-      },
-
-      /* Стили, которые реально работают внутри Shadow DOM */
-      injectStyles: `
-        .launcher-container {
-          display: flex !important;
-          align-items: center !important;
-          gap: 10px !important;
-          padding: 10px 14px !important;
-        }
-
-        .launcher-avatar {
-          width: 48px !important;
-          height: 48px !important;
-          border-radius: 50% !important;
-          animation: pulse 2.5s infinite;
-        }
-
-        @keyframes pulse {
-          0% { transform: scale(1); }
-          50% { transform: scale(1.07); }
-          100% { transform: scale(1); }
-        }
-
-        .launcher-title {
-          font-size: 15px !important;
-          font-weight: 600 !important;
-        }
-
-        .launcher-subtitle {
-          font-size: 13px !important;
-          opacity: 0.8 !important;
-        }
-
-        .launcher-bubble {
-          animation: fadeIn 0.8s ease-out;
-        }
-
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(6px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-      `
-    };
-  </script>
-
-  <script src="https://chatbot.getmindpal.com/embed.min.js"></script>
+<script>
+  window.mindpalConfig = {
+    chatbotId: "-oce",
+    display: {
+    type: "floating-corner",
+    anchor: "right"
+  },
+    behavior: {
+    showInitialMessageBubbleWhenMinimized: true,
+    minimizedByDefault: true
+  }
+  };
+</script>
+<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
 
 
 
