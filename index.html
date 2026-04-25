@@ -579,83 +579,33 @@
   handleScroll();
 </script>
 
-  <script>
+ <!-- MindPal AI агент -->
+<script>
   window.mindpalConfig = {
     chatbotId: "-oce",
     display: {
       type: "floating-corner",
-      anchor: "right",
-      // Увеличиваем аватар
-      avatarSize: 80, // размер в пикселях (было стандартно ~48-56)
-      avatarImageUrl: "https://example.com/your-avatar.png" // если нужно сменить аватар
+      anchor: "right"
     },
     behavior: {
       showInitialMessageBubbleWhenMinimized: true,
-      minimizedByDefault: true,
-      // Отключаем анимацию появления аватара
-      enableAvatarAnimation: false
-    },
-    style: {
-      // Улучшаем читаемость текста
-      fontFamily: "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif",
-      fontSize: "16px", // увеличиваем базовый размер шрифта
-      lineHeight: "1.5",
-      bubbleTextColor: "#ffffff",
-      bubbleBackgroundColor: "#1a73e8"
+      minimizedByDefault: true
     }
   };
 </script>
 <script src="https://chatbot.getmindpal.com/embed.min.js"></script>
 
-<!-- Дополнительные CSS-стили для принудительного мгновенного появления и увеличения -->
+<!-- Стили для увеличения аватара и мгновенного появления -->
 <style>
-  /* Принудительное мгновенное появление аватара */
-  .mindpal-avatar,
-  [class*="avatar"],
-  [class*="floating"] img,
-  [class*="chatbot"] img {
-    animation: none !important;
-    transition: none !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-  
-  /* Увеличение размера аватара */
   .mindpal-avatar,
   [class*="avatar"] {
     width: 80px !important;
     height: 80px !important;
-    min-width: 80px !important;
-    min-height: 80px !important;
-  }
-  
-  /* Улучшение читаемости текста в сообщениях */
-  .mindpal-message,
-  .mindpal-bubble,
-  [class*="message"],
-  [class*="bubble"] {
-    font-size: 16px !important;
-    line-height: 1.5 !important;
-    font-weight: 500 !important;
-    letter-spacing: 0.3px !important;
-  }
-  
-  /* Убираем начальную надпись, если она мешает */
-  .mindpal-initial-message,
-  [class*="initial-message"] {
     animation: none !important;
+    opacity: 1 !important;
+  }
+  .mindpal-initial-message {
     display: none !important;
-  }
-  
-  /* Плавное появление без задержки */
-  .mindpal-widget,
-  [class*="chatbot-widget"] {
-    animation: fadeInInstant 0.01s ease !important;
-  }
-  
-  @keyframes fadeInInstant {
-    from { opacity: 0; }
-    to { opacity: 1; }
   }
 </style>
   
