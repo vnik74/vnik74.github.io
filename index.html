@@ -579,35 +579,20 @@
   handleScroll();
 </script>
 
- <!-- MindPal AI агент -->
 <script>
   window.mindpalConfig = {
     chatbotId: "-oce",
     display: {
-      type: "floating-corner",
-      anchor: "right"
-    },
+    type: "floating-corner",
+    anchor: "right"
+  },
     behavior: {
-      showInitialMessageBubbleWhenMinimized: true,
-      minimizedByDefault: true
-    }
+    showInitialMessageBubbleWhenMinimized: true,
+    minimizedByDefault: true
+  }
   };
 </script>
 <script src="https://chatbot.getmindpal.com/embed.min.js"></script>
-
-<!-- Стили для увеличения аватара и мгновенного появления -->
-<style>
-  .mindpal-avatar,
-  [class*="avatar"] {
-    width: 80px !important;
-    height: 80px !important;
-    animation: none !important;
-    opacity: 1 !important;
-  }
-  .mindpal-initial-message {
-    display: none !important;
-  }
-</style>
   
 </body>
 </html>
