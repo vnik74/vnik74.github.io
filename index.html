@@ -579,24 +579,70 @@
   handleScroll();
 </script>
 
+  <!-- Контейнер для чата Coze -->
+<div id="coze-chat-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"></div>
 
 <script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/1.2.0/libs/oversea/index.js"></script>
 <script>
-  new CozeWebSDK.WebChatClient({
-    config: {
-      bot_id: '7633468798263885877',
-    },
-    componentProps: {
-      title: 'Coze',
-    },
-    auth: {
-      type: 'token',
-      token: 'pat_TlA0JWeZUq75VPUYTh0xxo46eTxpqFWFvv8cHYOBU7zAvjnc7aFCO1Kz94HbFVON',
-      onRefreshToken: function () {
-        return 'pat_TlA0JWeZUq75VPUYTh0xxo46eTxpqFWFvv8cHYOBU7zAvjnc7aFCO1Kz94HbFVON';
+  // Функция для инициализации чата с задержкой
+  function initCozeChat() {
+    if (typeof CozeWebSDK !== 'undefined' && CozeWebSDK.WebChatClient) {
+      try {
+        new CozeWebSDK.WebChatClient({
+          config: {
+            bot_id: '7633468798263885877',
+          },
+          el: document.getElementById('coze-chat-container'), // 👈 привязываем к контейнеру
+          componentProps: {
+            title: 'Задать вопрос',
+            // layout: 'pc', // или 'mobile'
+            // width: 380
+          },
+          auth: {
+            type: 'token',
+            token: 'pat_TlA0JWeZUq75VPUYTh0xxo46eTxpqFWFvv8cHYOBU7zAvjnc7aFCO1Kz94HbFVON',
+            onRefreshToken: function () {
+              return 'pat_TlA0JWeZUq75VPUYTh0xxo46eTxpqFWFvv8cHYOBU7zAvjnc7aFCO1Kz94HbFVON';
+            }
+          }
+        });
+        console.log('✅ Coze Chat инициализирован');
+      } catch (error) {
+        console.error('❌ Ошибка инициализации Coze Chat:', error);
+        showCozeFallback();
       }
+    } else {
+      console.warn('⚠️ Coze SDK не загрузился, повторная попытка через 2 секунды');
+      setTimeout(initCozeChat, 2000);
     }
-  });
+  }
+  
+  // Запасной вариант, если Coze не работает
+  function showCozeFallback() {
+    const container = document.getElementById('coze-chat-container');
+    if (container) {
+      container.innerHTML = `
+        <a href="https://vk.com/nikvirko" target="_blank" style="
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 56px;
+          height: 56px;
+          background: linear-gradient(135deg, #FFB6C1, #FFD700);
+          border-radius: 50%;
+          text-decoration: none;
+          box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+          cursor: pointer;
+        ">
+          <span style="font-size: 28px;">💬</span>
+        </a>
+      `;
+    }
+  }
+  
+  // Запускаем инициализацию после загрузки страницы
+  window.addEventListener('load', initCozeChat);
 </script>
+
 </body>
 </html>
