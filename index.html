@@ -579,20 +579,25 @@
   handleScroll();
 </script>
 
+
+<script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/1.2.0-beta.6/libs/oversea/index.js"></script>
 <script>
-  window.mindpalConfig = {
-    chatbotId: "-oce",
-    display: {
-    type: "floating-corner",
-    anchor: "right"
-  },
-    behavior: {
-    showInitialMessageBubbleWhenMinimized: true,
-    minimizedByDefault: true
-  }
-  };
+  new CozeWebSDK.WebChatClient({
+    config: {
+      bot_id: '7633468798263885877',
+    },
+    componentProps: {
+      title: 'Coze',
+    },
+    auth: {
+      type: 'token',
+      token: 'pat_********',
+      onRefreshToken: function () {
+        return 'pat_********'
+      }
+    }
+  });
 </script>
-<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
   
 </body>
 </html>
