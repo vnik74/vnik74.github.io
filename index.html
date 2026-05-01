@@ -766,18 +766,20 @@ async function sendMessage() {
     body: JSON.stringify({
       bot_id: "7633468798263885877",
       user_id: "user_123",
-      query: text,
-      conversation_id: "test_conv_1",
-      workflow_enabled: true,
-      stream: false
+      messages: [
+        {
+          role: "user",
+          content: text
+        }
+      ]
     })
   });
 
   const data = await response.json();
   console.log("COZE RAW:", data);
 
-  const msg = data?.data?.messages?.[0]?.content;
-  addMessage(msg || "Нет сообщений в ответе", "bot");
+  const answer = data?.data?.messages?.[0]?.content || "Нет ответа";
+  addMessage(answer, "bot");
 }
 
 
