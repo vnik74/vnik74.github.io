@@ -771,48 +771,29 @@ async function sendMessage() {
   });
 
   const data = await response.json();
+  console.log("COZE RAW:", data); // можно посмотреть в консоли браузера
 
   let answer = "Ошибка ответа";
 
   try {
-    const msg = data.messages?.[0];
+    const msg = data?.data?.messages?.[0];
 
-    // 1) Простой текст
-    if (typeof msg?.content === "string") {
+    if (!msg) {
+      answer = "Нет сообщений в ответе";
+    } else if (typeof msg.content === "string") {
       answer = msg.content;
-    }
-
-    // 2) content как массив
-    else if (Array.isArray(msg?.content)) {
+    } else if (Array.isArray(msg.content)) {
       const c = msg.content[0];
-
       if (c?.text) answer = c.text;
       else if (c?.value) answer = c.value;
-
-      // 3) children
       else if (Array.isArray(c?.children)) {
         const child = c.children.find(x => x.text);
         if (child?.text) answer = child.text;
-      }
-
-      // 4) elements
-      else if (Array.isArray(c?.elements)) {
+      } else if (Array.isArray(c?.elements)) {
         const el = c.elements.find(x => x.text);
         if (el?.text) answer = el.text;
       }
     }
-
-    // 5) fallback: output_text
-    else if (data.output_text) {
-      answer = data.output_text;
-    }
-
-    // 6) fallback: messages[].content
-    else if (data.messages) {
-      const m = data.messages.find(x => typeof x.content === "string");
-      if (m) answer = m.content;
-    }
-
   } catch (e) {
     answer = "Ошибка парсинга ответа";
   }
