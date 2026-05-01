@@ -766,40 +766,20 @@ async function sendMessage() {
     body: JSON.stringify({
       bot_id: "7633468798263885877",
       user_id: "user_123",
-      query: text
+      query: text,
+      conversation_id: "test_conv_1",
+      workflow_enabled: true,
+      stream: false
     })
   });
 
   const data = await response.json();
-  console.log("COZE RAW:", data); // можно посмотреть в консоли браузера
+  console.log("COZE RAW:", data);
 
-  let answer = "Ошибка ответа";
-
-  try {
-    const msg = data?.data?.messages?.[0];
-
-    if (!msg) {
-      answer = "Нет сообщений в ответе";
-    } else if (typeof msg.content === "string") {
-      answer = msg.content;
-    } else if (Array.isArray(msg.content)) {
-      const c = msg.content[0];
-      if (c?.text) answer = c.text;
-      else if (c?.value) answer = c.value;
-      else if (Array.isArray(c?.children)) {
-        const child = c.children.find(x => x.text);
-        if (child?.text) answer = child.text;
-      } else if (Array.isArray(c?.elements)) {
-        const el = c.elements.find(x => x.text);
-        if (el?.text) answer = el.text;
-      }
-    }
-  } catch (e) {
-    answer = "Ошибка парсинга ответа";
-  }
-
-  addMessage(answer, "bot");
+  const msg = data?.data?.messages?.[0]?.content;
+  addMessage(msg || "Нет сообщений в ответе", "bot");
 }
+
 
 
 chatSend.onclick = sendMessage;
