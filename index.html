@@ -579,39 +579,257 @@
   handleScroll();
 </script>
 
-<!-- Coze SDK (fallback CDN) -->
-<script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/1.1.0-beta.0/libs/cn/index.js"></script>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Ассистент Николая</title>
+
+<style>
+/* --- ИКОНКА АССИСТЕНТА (400×400) --- */
+#assistant-icon {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 400px;
+  height: 400px;
+  cursor: pointer;
+  z-index: 9999;
+  transition: 0.35s ease;
+  filter: drop-shadow(0 8px 20px rgba(0,0,0,0.25));
+  animation: pulse 3s infinite ease-in-out;
+}
+
+#assistant-icon:hover {
+  transform: scale(1.07);
+  filter: drop-shadow(0 14px 32px rgba(0,0,0,0.35));
+}
+
+/* Пульсация */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+/* --- ОКНО ЧАТА --- */
+#chat-window {
+  position: fixed;
+  bottom: 20px;
+  left: 440px;
+  width: 340px;
+  height: 460px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: 0.35s cubic-bezier(.25,.8,.25,1);
+}
+
+#chat-window.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+#chat-header {
+  background: #111;
+  color: #fff;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+#chat-messages {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  font-size: 14px;
+}
+
+.message {
+  margin-bottom: 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  max-width: 80%;
+  line-height: 1.4;
+}
+
+.user {
+  background: #111;
+  color: #fff;
+  margin-left: auto;
+}
+
+.bot {
+  background: #f1f1f1;
+  color: #111;
+}
+
+#chat-input-area {
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+
+#chat-input {
+  flex: 1;
+  border: none;
+  padding: 12px;
+  font-size: 14px;
+}
+
+#chat-send {
+  width: 50px;
+  border: none;
+  background: #111;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+#chat-send:hover {
+  background: #333;
+}
+
+/* --- АДАПТИВНОСТЬ ДЛЯ ТЕЛЕФОНА --- */
+@media (max-width: 600px) {
+  #assistant-icon {
+    width: 180px;
+    height: 180px;
+    bottom: 10px;
+    left: 10px;
+  }
+
+  #chat-window {
+    left: 200px;
+    width: 260px;
+    height: 420px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ИКОНКА АССИСТЕНТА -->
+<img id="assistant-icon" src="https://vnik74.github.io/images/Avatar-s.png" alt="Ассистент">
+
+<!-- ОКНО ЧАТА -->
+<div id="chat-window">
+  <div id="chat-header">Ассистент</div>
+  <div id="chat-messages"></div>
+  <div id="chat-input-area">
+    <input id="chat-input" type="text" placeholder="Напишите сообщение...">
+    <button id="chat-send">➤</button>
+  </div>
+</div>
 
 <script>
-  window.addEventListener("load", function () {
-    // Проверка загрузки SDK
-    if (!window.CozeWebSDK) {
-      console.error("Coze SDK не загрузился");
-      return;
+/* --- ЛОГИКА ОТКРЫТИЯ ЧАТА --- */
+const icon = document.getElementById("assistant-icon");
+const chat = document.getElementById("chat-window");
+const chatMessages = document.getElementById("chat-messages");
+const chatInput = document.getElementById("chat-input");
+const chatSend = document.getElementById("chat-send");
+
+icon.onclick = () => {
+  chat.classList.toggle("open");
+};
+
+/* --- ДОБАВЛЕНИЕ СООБЩЕНИЙ --- */
+function addMessage(text, sender) {
+  const div = document.createElement("div");
+  div.className = "message " + sender;
+  div.textContent = text;
+  chatMessages.appendChild(div);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+/* --- ОТПРАВКА СООБЩЕНИЯ В COZE --- */
+async function sendMessage() {
+  const text = chatInput.value.trim();
+  if (!text) return;
+
+  addMessage(text, "user");
+  chatInput.value = "";
+
+  const response = await fetch("https://api.coze.com/open_api/v2/chat", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer pat_TlA0JWeZUq75VPUYTh0xxo46eTxpqFWFvv8cHYOBU7zAvjnc7aFCO1Kz94HbFVON"
+    },
+    body: JSON.stringify({
+      bot_id: "7633468798263885877",
+      user_id: "user_123",
+      query: text
+    })
+  });
+
+  const data = await response.json();
+
+  let answer = "Ошибка ответа";
+
+  try {
+    const msg = data.messages?.[0];
+
+    // 1) Простой текст
+    if (typeof msg?.content === "string") {
+      answer = msg.content;
     }
 
-    try {
-      new CozeWebSDK.WebChatClient({
-        config: {
-          bot_id: '7633468798263885877',
-        },
-        componentProps: {
-          title: 'Coze',
-        },
-        auth: {
-          type: 'token',
-          token: 'pat_TlA0JWeZUq75VPUYTh0xxo46eTxpqFWFvv8cHYOBU7zAvjnc7aFCO1Kz94HbFVON',
-          onRefreshToken: function () {
-            // для теста возвращаем тот же токен
-            return 'pat_TlA0JWeZUq75VPUYTh0xxo46eTxpqFWFvv8cHYOBU7zAvjnc7aFCO1Kz94HbFVON';
-          }
-        }
-      });
-    } catch (e) {
-      console.error("Ошибка инициализации Coze:", e);
+    // 2) content как массив
+    else if (Array.isArray(msg?.content)) {
+      const c = msg.content[0];
+
+      if (c?.text) answer = c.text;
+      else if (c?.value) answer = c.value;
+
+      // 3) children
+      else if (Array.isArray(c?.children)) {
+        const child = c.children.find(x => x.text);
+        if (child?.text) answer = child.text;
+      }
+
+      // 4) elements
+      else if (Array.isArray(c?.elements)) {
+        const el = c.elements.find(x => x.text);
+        if (el?.text) answer = el.text;
+      }
     }
-  });
+
+    // 5) fallback: output_text
+    else if (data.output_text) {
+      answer = data.output_text;
+    }
+
+    // 6) fallback: messages[].content
+    else if (data.messages) {
+      const m = data.messages.find(x => typeof x.content === "string");
+      if (m) answer = m.content;
+    }
+
+  } catch (e) {
+    answer = "Ошибка парсинга ответа";
+  }
+
+  addMessage(answer, "bot");
+}
+
+
+chatSend.onclick = sendMessage;
+chatInput.onkeydown = (e) => {
+  if (e.key === "Enter") sendMessage();
+};
 </script>
+
+</body>
+</html>
+
   
 </body>
 </html>
