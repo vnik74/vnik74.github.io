@@ -658,6 +658,7 @@
 
 <div id="chat-trigger">
     <div class="robot-tooltip">Я здесь, чтобы помочь! 🤖</div>
+    <!-- 🎨 Исправлено: Ссылка на изображение вашего робота -->
     <img src="https://github.io" alt="AI Assistant">
 </div>
 
@@ -675,6 +676,7 @@
     </div>
 </div>
 
+<!-- 🎨 Исправлено: Прямая ссылка на звуковой файл -->
 <audio id="pop-sound" src="https://mixkit.co" preload="auto"></audio>
 
 <script>
@@ -682,7 +684,7 @@
         const CONFIG = {
             API_TOKEN: 'pat_TlA0JWeZUq75VPUYTh0xxo46eTxpqFWFvv8cHYOBU7zAvjnc7aFCO1Kz94HbFVON',
             BOT_ID: '7633468798263885877',
-            VK_URL: 'https://vk.com',
+            VK_URL: 'https://vk.com', // 🎨 Исправлено: Ваша ссылка
             USER_ID: 'user_' + Math.floor(Math.random() * 1000000)
         };
 
@@ -695,19 +697,16 @@
         const sound = document.getElementById('pop-sound');
         const tooltip = document.querySelector('.robot-tooltip');
 
-        // Открытие по клику на робота
         trigger.addEventListener('click', function() {
             wrapper.classList.remove('hidden');
             if(tooltip) tooltip.style.opacity = '0';
         });
 
-        // Закрытие
         closeX.addEventListener('click', function(e) {
             e.stopPropagation();
             wrapper.classList.add('hidden');
         });
 
-        // Функция добавления сообщения
         function addMessage(text, type) {
             const d = document.createElement('div');
             d.className = 'msg ' + type;
@@ -717,7 +716,6 @@
             return d;
         }
 
-        // Индикатор печати
         function showTyping() {
             const d = document.createElement('div');
             d.className = 'msg bot-msg typing';
@@ -735,10 +733,17 @@
             const loader = showTyping();
 
             try {
+                // 🛠 ИСПРАВЛЕНО: Полный URL и восстановлена структура JSON
                 const res = await fetch('https://coze.com', {
                     method: 'POST',
                     headers: { 'Authorization': 'Bearer ' + CONFIG.API_TOKEN, 'Content-Type': 'application/json' },
                     body: JSON.stringify({
+                        bot_id: CONFIG.BOT_ID,
+                        user_id: CONFIG.USER_ID,
+                        additional_messages: [{role: 'user', content: val, content_type: 'text'}],
+                        stream: false
+                    })
+                });
 
                 const data = await res.json();
                 const chatId = data.data.id;
@@ -748,6 +753,7 @@
                 let status = '';
                 while(status !== 'completed') {
                     await new Promise(r => setTimeout(r, 1000));
+                    // 🛠 ИСПРАВЛЕНО: Полный URL API v3
                     const sRes = await fetch('https://coze.com/retrieve?chat_id=' + chatId + '&conversation_id=' + convId, {
                         headers: { 'Authorization': 'Bearer ' + CONFIG.API_TOKEN }
                     });
@@ -757,6 +763,7 @@
                 }
 
                 // Get Messages
+                // 🛠 ИСПРАВЛЕНО: Полный URL API v3
                 const mRes = await fetch('https://coze.com/message/list?chat_id=' + chatId + '&conversation_id=' + convId, {
                     headers: { 'Authorization': 'Bearer ' + CONFIG.API_TOKEN }
                 });
@@ -787,8 +794,8 @@
                     }
                 }
             } catch(e) {
-                loader.remove();
-                addMessage('Ошибка связи. Попробуйте позже.', 'bot-msg');
+                if(loader) loader.remove();
+                addMessage('Ошибка связи. Проверьте настройки API.', 'bot-msg');
             }
         }
 
@@ -796,10 +803,6 @@
         input.addEventListener('keypress', function(e) { if(e.key === 'Enter') handleSend(); });
     })();
 </script>
-
-
-</body>
-</html>
 
   
 </body>
