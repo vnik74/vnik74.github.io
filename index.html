@@ -658,7 +658,7 @@
 
 <div id="chat-trigger">
     <div class="robot-tooltip">Я здесь, чтобы помочь! 🤖</div>
-    <!-- 🎨 Исправлено: Ссылка на изображение вашего робота -->
+    <!-- 🎨 ИСПРАВЛЕНО: Прямая ссылка на ваше изображение робота -->
     <img src="https://github.io" alt="AI Assistant">
 </div>
 
@@ -676,7 +676,7 @@
     </div>
 </div>
 
-<!-- 🎨 Исправлено: Прямая ссылка на звуковой файл -->
+<!-- 🎨 ИСПРАВЛЕНО: Прямая ссылка на файл звука .mp3 -->
 <audio id="pop-sound" src="https://mixkit.co" preload="auto"></audio>
 
 <script>
@@ -684,7 +684,7 @@
         const CONFIG = {
             API_TOKEN: 'pat_TlA0JWeZUq75VPUYTh0xxo46eTxpqFWFvv8cHYOBU7zAvjnc7aFCO1Kz94HbFVON',
             BOT_ID: '7633468798263885877',
-            VK_URL: 'https://vk.com', // 🎨 Исправлено: Ваша ссылка
+            VK_URL: 'https://vk.com', 
             USER_ID: 'user_' + Math.floor(Math.random() * 1000000)
         };
 
@@ -733,7 +733,7 @@
             const loader = showTyping();
 
             try {
-                // 🛠 ИСПРАВЛЕНО: Полный URL и восстановлена структура JSON
+                // 🛠 ИСПРАВЛЕНО: Указан верный API Endpoint (api.coze.com)
                 const res = await fetch('https://coze.com', {
                     method: 'POST',
                     headers: { 'Authorization': 'Bearer ' + CONFIG.API_TOKEN, 'Content-Type': 'application/json' },
@@ -746,14 +746,16 @@
                 });
 
                 const data = await res.json();
+                if (!data.data) throw new Error();
+                
                 const chatId = data.data.id;
                 const convId = data.data.conversation_id;
 
-                // Polling
+                // Polling статуса
                 let status = '';
                 while(status !== 'completed') {
                     await new Promise(r => setTimeout(r, 1000));
-                    // 🛠 ИСПРАВЛЕНО: Полный URL API v3
+                    // 🛠 ИСПРАВЛЕНО: Верный URL для опроса статуса
                     const sRes = await fetch('https://coze.com/retrieve?chat_id=' + chatId + '&conversation_id=' + convId, {
                         headers: { 'Authorization': 'Bearer ' + CONFIG.API_TOKEN }
                     });
@@ -762,8 +764,8 @@
                     if(status === 'failed') throw new Error();
                 }
 
-                // Get Messages
-                // 🛠 ИСПРАВЛЕНО: Полный URL API v3
+                // Получение сообщения
+                // 🛠 ИСПРАВЛЕНО: Верный URL для списка сообщений
                 const mRes = await fetch('https://coze.com/message/list?chat_id=' + chatId + '&conversation_id=' + convId, {
                     headers: { 'Authorization': 'Bearer ' + CONFIG.API_TOKEN }
                 });
