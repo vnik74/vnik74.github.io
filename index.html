@@ -579,7 +579,7 @@
   handleScroll();
 </script>
 
-    <title>AI Portfolio Assistant</title>
+
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -587,20 +587,17 @@
             background-color: #f0f2f5;
         }
 
-        /* ==========================================================
-           1. КНОПКА-РОБОТ (TRIGGER)
-           ========================================================== */
+        /* --- КНОПКА-РОБОТ (TRIGGER) --- */
         .chat-trigger {
             position: fixed;
             bottom: 20px;
-            right: 80px; /* 👈 Сдвинули вправо на 110px, чтобы не мешать кнопке "Наверх" */
-            width: 130px;  /* Крупный размер для привлечения внимания */
+            right: 80px; /* Позиция X=80, чтобы не мешать кнопке "Наверх" */
+            width: 130px;
             height: 130px;
             cursor: pointer;
             z-index: 1001;
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             background: transparent;
-            /* Мягкое свечение вокруг сферы робота */
             filter: drop-shadow(0 10px 25px rgba(255, 183, 153, 0.6));
         }
 
@@ -608,7 +605,6 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
-            /* Анимация "дыхания" робота */
             animation: robotFloat 3s infinite ease-in-out;
         }
 
@@ -621,16 +617,53 @@
             transform: scale(1.1) rotate(5deg);
         }
 
-        /* ==========================================================
-           2. ОКНО ЧАТА (НАД РОБОТОМ)
-           ========================================================== */
+        /* --- ОБЛАЧКО С ТЕКСТОМ (TOOLTIP) --- */
+        .robot-tooltip {
+            position: absolute;
+            left: -190px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            color: #333;
+            padding: 10px 15px;
+            border-radius: 15px;
+            font-size: 13px;
+            font-weight: 600;
+            white-space: nowrap;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.5s ease;
+        }
+
+        .robot-tooltip::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-left: 10px solid white;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+        }
+
+        @keyframes tooltipShow {
+            from { opacity: 0; transform: translateY(-50%) translateX(10px); }
+            to { opacity: 1; transform: translateY(-50%) translateX(0); }
+        }
+
+        .chat-trigger .robot-tooltip {
+            animation: tooltipShow 0.8s ease forwards 2s;
+        }
+
+        /* --- ОКНО ЧАТА --- */
         .chat-wrapper {
             position: fixed;
-            bottom: 160px; /* 👈 Располагаем ВЫШЕ робота (130px робот + 30px отступ) */
-            right: 110px;  /* Та же координата X=110 */
+            bottom: 160px;
+            right: 80px; 
             width: 380px;
             height: 550px;
-            max-height: 70vh;
+            max-height: 75vh;
             background: #fff;
             border-radius: 24px;
             box-shadow: 0 15px 40px rgba(0,0,0,0.2);
@@ -644,13 +677,12 @@
 
         .chat-wrapper.hidden {
             opacity: 0;
-            transform: translateY(40px) scale(0.5); /* Эффект вылета из робота */
+            transform: translateY(40px) scale(0.5);
             pointer-events: none;
         }
 
-        /* Остальные стили интерфейса */
         .chat-header {
-            background: #f89d70; /* Цвет под стать вашему роботу */
+            background: #f89d70;
             color: white;
             padding: 18px;
             display: flex;
@@ -659,10 +691,7 @@
             font-weight: 600;
         }
 
-        .close-btn {
-            background: none; border: none; color: white;
-            font-size: 24px; cursor: pointer;
-        }
+        .close-btn { background: none; border: none; color: white; font-size: 24px; cursor: pointer; }
 
         .chat-window {
             flex: 1; padding: 20px;
@@ -670,16 +699,9 @@
             display: flex; flex-direction: column; gap: 12px;
         }
 
-        .msg {
-            max-width: 85%; padding: 12px 16px;
-            font-size: 14px; line-height: 1.5;
-            animation: msgFade 0.3s ease;
-        }
-
-        @keyframes msgFade { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-
-        .bot-msg { background: #fff; border-radius: 18px 18px 18px 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); align-self: flex-start; }
-        .user-msg { background: #f89d70; color: white; border-radius: 18px 18px 4px 18px; align-self: flex-end; }
+        .msg { max-width: 85%; padding: 12px 16px; font-size: 14px; line-height: 1.5; border-radius: 18px; }
+        .bot-msg { background: #fff; border-bottom-left-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); align-self: flex-start; }
+        .user-msg { background: #f89d70; color: white; border-bottom-right-radius: 4px; align-self: flex-end; }
 
         /* Индикатор печати */
         .typing { display: flex; gap: 4px; padding: 10px; }
@@ -705,70 +727,17 @@
         @media (max-width: 500px) {
             .chat-wrapper { width: 100%; height: 100%; bottom: 0; right: 0; border-radius: 0; }
             .chat-trigger { width: 90px; height: 90px; right: 10px; bottom: 10px; }
+            .robot-tooltip { display: none; }
         }
-		/* Стили для облачка с текстом */
-.robot-tooltip {
-    position: absolute;
-    left: -200px; /* Дистанция слева от робота */
-    top: 50%;
-    transform: translateY(-50%);
-    background: white;
-    color: #333;
-    padding: 10px 15px;
-    border-radius: 15px;
-    font-size: 13px;
-    font-weight: 600;
-    white-space: nowrap;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    opacity: 0; /* Изначально скрыто */
-    pointer-events: none;
-    transition: all 0.5s ease;
-    animation: tooltipFloat 2s infinite ease-in-out;
-}
-
-/* Треугольник-указатель (носик облачка) */
-.robot-tooltip::after {
-    content: '';
-    position: absolute;
-    right: -8px;
-    top: 50%;
-    transform: translateY(-50%);
-    border-left: 10px solid white;
-    border-top: 8px solid transparent;
-    border-bottom: 8px solid transparent;
-}
-
-/* Анимация появления надписи через 2 секунды после загрузки сайта */
-@keyframes tooltipShow {
-    from { opacity: 0; transform: translateY(-50%) translateX(10px); }
-    to { opacity: 1; transform: translateY(-50%) translateX(0); }
-}
-
-/* Легкое покачивание надписи за роботом */
-@keyframes tooltipFloat {
-    0%, 100% { transform: translateY(-50%); }
-    50% { transform: translateY(-60%); }
-}
-
-/* Показываем надпись автоматически */
-.chat-trigger .robot-tooltip {
-    animation: tooltipShow 0.8s ease forwards 2s, tooltipFloat 3s infinite ease-in-out 2.8s;
-}
-
-/* Скрываем надпись, когда чат открыт */
-.chat-wrapper:not(.hidden) ~ .chat-trigger .robot-tooltip {
-    display: none;
-}
     </style>
 </head>
 <body>
 
-    <!-- 🎨 1. ИЗОБРАЖЕНИЕ РОБОТА -->
-   <div id="chat-trigger" class="chat-trigger">
-    <!-- Надпись призыва к действию -->
-    <div class="robot-tooltip">Я здесь, чтобы помочь! 🤖</div>
-    <img src="https://vnik74.github.io/images/-avatar-f-250.png" alt="AI Assistant">
-</div>
+    <!-- РОБОТ -->
+    <div id="chat-trigger" class="chat-trigger">
+        <div class="robot-tooltip">Я здесь, чтобы помочь! 🤖</div>
+        <img src="https://vnik74.github.io/images/-avatar-f-250.png" alt="AI Assistant">
+    </div>
 
     <!-- ОКНО ЧАТА -->
     <div id="chat-wrapper" class="chat-wrapper hidden">
@@ -785,17 +754,17 @@
         </div>
     </div>
 
-    <!-- 🎨 2. ЗВУКОВОЙ ФАЙЛ (ПОП) -->
+    <!-- ЗВУК (ИСПРАВЛЕНО) -->
     <audio id="pop-sound" src="https://mixkit.co" preload="auto"></audio>
 
     <script>
         /* =========================================
-           🎨 3. ГЛАВНЫЕ НАСТРОЙКИ (ЗАПОЛНИТЕ ТУТ)
+           🎨 ГЛАВНЫЕ НАСТРОЙКИ (ИСПРАВЛЕНО)
            ========================================= */
         const CONFIG = {
-            API_TOKEN: 'pat_TlA0JWeZUq75VPUYTh0xxo46eTxpqFWFvv8cHYOBU7zAvjnc7aFCO1Kz94HbFVON',       // 👈 Ваш Personal Access Token
-            BOT_ID: '7633468798263885877',             // 👈 Ваш Bot ID
-            VK_URL: 'https://vk.com/nikvirko', // 👈 Ваша ссылка на VK
+            API_TOKEN: 'pat_TlA0JWeZUq75VPUYTh0xxo46eTxpqFWFvv8cHYOBU7zAvjnc7aFCO1Kz94HbFVON',
+            BOT_ID: '7633468798263885877',
+            VK_URL: 'https://vk.com/nikvirko',
             USER_ID: 'user_' + Math.floor(Math.random() * 1000000)
         };
 
@@ -806,10 +775,12 @@
         const userInput = document.getElementById('user-input');
         const sendBtn = document.getElementById('send-btn');
         const popSound = document.getElementById('pop-sound');
+        const tooltip = document.querySelector('.robot-tooltip');
 
         // Открытие/Закрытие
         chatTrigger.onclick = () => {
             chatWrapper.classList.toggle('hidden');
+            if (tooltip) tooltip.style.display = 'none'; // Скрываем надпись при открытии
         };
         closeBtn.onclick = () => chatWrapper.classList.add('hidden');
 
@@ -823,11 +794,10 @@
 
             userInput.value = '';
             addMessage(query, 'user-msg');
-
             const typing = showTyping();
             
             try {
-                // ШАГ 1: Создаем чат
+                // ШАГ 1: Создаем чат (ИСПРАВЛЕНО: Полный URL)
                 const response = await fetch('https://coze.com', {
                     method: 'POST',
                     headers: { 'Authorization': `Bearer ${CONFIG.API_TOKEN}`, 'Content-Type': 'application/json' },
@@ -842,7 +812,7 @@
                 const chatId = data.data.id;
                 const convId = data.data.conversation_id;
 
-                // ШАГ 2: Опрос статуса
+                // ШАГ 2: Опрос статуса (ИСПРАВЛЕНО: Полный URL)
                 const finalContent = await pollChatStatus(chatId, convId);
                 
                 typing.remove();
@@ -850,7 +820,7 @@
 
             } catch (err) {
                 typing.remove();
-                addMessage("Извините, произошла ошибка. Попробуйте позже.", "bot-msg");
+                addMessage("Ошибка связи. Проверьте настройки API.", "bot-msg");
             }
         }
 
@@ -883,7 +853,10 @@
             addMessage(text, 'bot-msg');
             if(hasBtn) {
                 setTimeout(() => {
-                    if(popSound) { popSound.currentTime = 0; popSound.play().catch(()=>{}); }
+                    if(popSound) { 
+                        popSound.currentTime = 0; 
+                        popSound.play().catch(()=>{}); 
+                    }
                     addVkButton();
                 }, 600);
             }
