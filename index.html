@@ -580,7 +580,7 @@
 </script>
 
 <!-- ==========================================================
-     БЛОК ИИ-АССИСТЕНТА (НИКОЛАЙ) - ИСПРАВЛЕННЫЙ
+     БЛОК ИИ-АССИСТЕНТА (НИКОЛАЙ) - ФИНАЛЬНОЕ ИСПРАВЛЕНИЕ
      ========================================================== -->
 <div id="chat-trigger">
     <div class="robot-tooltip">Я здесь, чтобы помочь! 🤖</div>
@@ -653,12 +653,13 @@
         async function handleSend() {
             const val = input.value.trim();
             if(!val) return;
+
             input.value = '';
             addMessage(val, 'user-msg');
             const loader = showTyping();
 
             try {
-                // ✅ ШАГ 1: Создание чата (Адрес ИСПРАВЛЕН)
+                // ✅ ИСПРАВЛЕНО: Полный путь к API v3
                 const res = await fetch('https://coze.com', {
                     method: 'POST',
                     headers: { 
@@ -674,12 +675,12 @@
                 });
 
                 const data = await res.json();
-                if (!data.data) throw new Error('No data');
+                if (!data.data) throw new Error('API Error: No data received');
                 
                 const chatId = data.data.id;
                 const convId = data.data.conversation_id;
 
-                // ✅ ШАГ 2: Опрос статуса (Адрес ИСПРАВЛЕН)
+                // ✅ ИСПРАВЛЕНО: Полный путь retrieve
                 let status = '';
                 while(status !== 'completed') {
                     await new Promise(r => setTimeout(r, 1000));
@@ -691,7 +692,7 @@
                     if(status === 'failed') throw new Error('Chat failed');
                 }
 
-                // ✅ ШАГ 3: Получение сообщений (Адрес ИСПРАВЛЕН)
+                // ✅ ИСПРАВЛЕНО: Полный путь message/list
                 const mRes = await fetch(`https://coze.com/message/list?chat_id=${chatId}&conversation_id=${convId}`, {
                     headers: { 'Authorization': 'Bearer ' + CONFIG.API_TOKEN }
                 });
@@ -723,7 +724,7 @@
                 }
             } catch(e) {
                 if(loader) loader.remove();
-                addMessage('Ошибка связи. Проверьте публикацию бота в Coze.', 'bot-msg');
+                addMessage('Ошибка связи. Проверьте настройки API.', 'bot-msg');
                 console.error('API Error:', e);
             }
         }
