@@ -739,12 +739,7 @@
                     method: 'POST',
                     headers: { 'Authorization': 'Bearer ' + CONFIG.API_TOKEN, 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        bot_id: CONFIG.BOT_ID,
-                        user_id: CONFIG.USER_ID,
-                        additional_messages: [{role: 'user', content: val, content_type: 'text'}],
-                        stream: false
-                    })
-                });
+
                 const data = await res.json();
                 const chatId = data.data.id;
                 const convId = data.data.conversation_id;
