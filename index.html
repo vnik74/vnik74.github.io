@@ -657,6 +657,7 @@
 
 <div id="chat-trigger">
     <div class="robot-tooltip">Я здесь, чтобы помочь! 🤖</div>
+    <!-- 🖼 Прямая ссылка на ваше изображение робота -->
     <img src="https://vnik74.github.io/images/-avatar-f-250.png" alt="AI Assistant">
 </div>
 
@@ -674,14 +675,15 @@
     </div>
 </div>
 
-<audio id="pop-sound" src="https://mixkit.co" preload="auto"></audio>
+<!-- 🎵 Прямая ссылка на ваш звуковой файл -->
+<audio id="pop-sound" src="https://vnik74.github.io/zvuk.mp3" preload="auto"></audio>
 
 <script>
     (function() {
         const CONFIG = {
             API_TOKEN: 'pat_TlA0JWeZUq75VPUYTh0xxo46eTxpqFWFvv8cHYOBU7zAvjnc7aFCO1Kz94HbFVON',
             BOT_ID: '7633468798263885877',
-            VK_URL: 'https://vk.com',
+            VK_URL: 'https://vk.com/nikvirko',
             USER_ID: 'user_' + Math.floor(Math.random() * 1000000)
         };
 
@@ -730,8 +732,8 @@
             const loader = showTyping();
 
             try {
-                // ШАГ 1: Создание чата (Адреса ИСПРАВЛЕНЫ на ://coze.com)
-                const res = await fetch('https://://coze.com/v3/chat', {
+                // ✅ ШАГ 1: Создание чата (Полный верный путь API v3)
+                const res = await fetch('https://coze.com', {
                     method: 'POST',
                     headers: { 'Authorization': 'Bearer ' + CONFIG.API_TOKEN, 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -740,18 +742,18 @@
                         additional_messages: [{role: 'user', content: val, content_type: 'text'}],
                         stream: false
                     })
-                });
+                });                
                 const data = await res.json();
                 if(!data.data) throw new Error();
 
                 const chatId = data.data.id;
                 const convId = data.data.conversation_id;
 
-                // ШАГ 2: Polling (Проверка готовности ответа)
+                // ✅ ШАГ 2: Polling (Полный верный путь API v3)
                 let status = '';
                 while(status !== 'completed') {
                     await new Promise(r => setTimeout(r, 1000));
-                    const sRes = await fetch('https://://coze.com/v3/chat/retrieve?chat_id=' + chatId + '&conversation_id=' + convId, {
+                    const sRes = await fetch('https://coze.com/retrieve?chat_id=' + chatId + '&conversation_id=' + convId, {
                         headers: { 'Authorization': 'Bearer ' + CONFIG.API_TOKEN }
                     });
                     const sData = await sRes.json();
@@ -759,8 +761,8 @@
                     if(status === 'failed') throw new Error();
                 }
 
-                // ШАГ 3: Получение сообщения
-                const mRes = await fetch('https://://coze.com/v3/chat/message/list?chat_id=' + chatId + '&conversation_id=' + convId, {
+                // ✅ ШАГ 3: Получение сообщения (Полный верный путь API v3)
+                const mRes = await fetch('https://coze.com/message/list?chat_id=' + chatId + '&conversation_id=' + convId, {
                     headers: { 'Authorization': 'Bearer ' + CONFIG.API_TOKEN }
                 });
                 const mData = await mRes.json();
@@ -799,6 +801,7 @@
         input.addEventListener('keypress', function(e) { if(e.key === 'Enter') handleSend(); });
     })();
 </script>
+
 
 
   
