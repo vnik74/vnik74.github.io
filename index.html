@@ -579,20 +579,99 @@
   handleScroll();
 </script>
 
-  <script>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Chat Assistant</title>
+
+<style>
+  /* Чат остаётся справа, чуть приподнят */
+  iframe[src*="mindpal"],
+  div[id*="mindpal"] {
+    position: fixed !important;
+    right: 20px !important;
+    bottom: 40px !important;
+  }
+
+  /* Текст СЛЕВА от иконки — постоянный, не исчезает */
+  .chat-label {
+    position: fixed;
+    bottom: 40px;           /* ТО ЖЕ САМОЕ ЗНАЧЕНИЕ, ЧТО У ИКОНКИ */
+    right: 120px;           /* отступ влево от иконки */
+    
+    background: linear-gradient(135deg, #4a6cf7 0%, #6c5ce7 100%);
+    color: #FFD700;         /* ЖЁЛТЫЙ ЦВЕТ — КАК ТЕЛО ПАЛЬЦА 👆 */
+    
+    padding: 6px 12px;
+    border-radius: 20px;
+    
+    font-size: 13px;
+    font-weight: 600;
+    
+    /* КРАСНАЯ ТОНКАЯ ОБВОДКА ТЕКСТА */
+    text-shadow: 
+      0 0 0.5px #ff0000,
+      0.5px 0 0.5px #ff0000,
+      -0.5px 0 0.5px #ff0000,
+      0 -0.5px 0.5px #ff0000;
+    
+    box-shadow: 0 4px 12px rgba(74, 108, 247, 0.3);
+    border: 1px solid rgba(255,255,255,0.2);
+    
+    z-index: 9999;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  
+  /* стрелка вправо → к иконке */
+  .chat-label::after {
+    content: "";
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    
+    width: 8px;
+    height: 8px;
+    background: #5a6ef0;
+  }
+  
+  /* палец указывает на кнопку */
+  .chat-label::before {
+    content: "👉";
+    position: absolute;
+    right: -32px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- Постоянная надпись — ДОБАВЛЕНА КРАСНАЯ ОБВОДКА -->
+<div class="chat-label">Ваш помощник</div>
+
+<script>
   window.mindpalConfig = {
     chatbotId: "-oce",
     display: {
-    type: "floating-corner",
-    anchor: "right"
-  },
+      type: "floating-corner",
+      anchor: "right"
+    },
     behavior: {
-    showInitialMessageBubbleWhenMinimized: true,
-    minimizedByDefault: true
-  }
+      showInitialMessageBubbleWhenMinimized: true,
+      minimizedByDefault: true
+    }
   };
 </script>
-<script src="https://chatbot.getmindpal.com/embed.min.js"></script>  
+
+<script src="https://chatbot.getmindpal.com/embed.min.js"></script>
+
+</body>
+</html>
  
 </body>
 </html>
