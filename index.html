@@ -579,16 +579,34 @@
   handleScroll();
 </script>
 
-<athena-chat-widget
-  api-key="cmovscp470001ok01tnfhas8x"
-  use-contact-fields="name,email,socLink"
-  custom-widget-logo="https://storage.googleapis.com/athenachatai.appspot.com/widget/n9c7CC2xAqO0FIqf6H7DRBHC4U12/46fc4961-1ec1-4fb0-b6e6-f669f304c8f6.png"
-  widget-color="#0066CC"
-  widget-title="Афина — ассистент Николая"
-  title-for-asking-name="Как к вам обращаться и где вас найти в VK?"
->
-</athena-chat-widget>
-<script src="https://widget-js.athenachat.ai/widget.js?t=1778181344928" type="module" crossorigin></script>
+<!-- Контейнер вашей иконки -->
+<div id="athena-custom-launcher" style="
+    position: fixed; 
+    bottom: 20px; 
+    right: 20px; 
+    width: 70px; 
+    height: 70px; 
+    cursor: pointer; 
+    z-index: 10000;
+    transition: transform 0.2s ease;
+">
+    <!-- Ваша картинка -->
+    <img src="https://vnik74.github.io/images/Assistant_Nikolai_1.png" 
+         alt="Открыть чат" 
+         style="width: 100%; height: 100%; object-fit: contain; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+</div>
+
+<script>
+    document.getElementById('athena-custom-launcher').onclick = function() {
+        // Главная команда для открытия диалога Афины
+        window.postMessage('athena-chat-open', '*');
+        
+        // Маленький спецэффект нажатия
+        this.style.transform = 'scale(0.9)';
+        setTimeout(() => { this.style.transform = 'scale(1)'; }, 150);
+    };
+</script>
+
 
  
 </body>
